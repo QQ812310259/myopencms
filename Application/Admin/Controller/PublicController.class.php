@@ -24,9 +24,9 @@ class PublicController extends CommonController {
             $password = I('password');
 
             // 图片验证码校验
-            if (!$this->check_verify(I('post.verify'))) {
-                $this->error('验证码输入错误！');
-            }
+//             if (!$this->check_verify(I('post.verify'))) {
+//                 $this->error('验证码输入错误！');
+//             }
 
             // 验证用户名密码是否正确
             $user_object = D('Admin/User');

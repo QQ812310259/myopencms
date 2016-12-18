@@ -167,13 +167,13 @@ class FormBuilder extends CommonController {
                 }
             }
         }
-
         $this->assign('meta_title',  $this->_meta_title);  //页面标题
         $this->assign('tab_nav',     $this->_tab_nav);     //页面Tab导航
         $this->assign('post_url',    $this->_post_url);    //标题提交地址
         $this->assign('form_items',  $this->_form_items);  //表单项目
         $this->assign('ajax_submit', $this->_ajax_submit); //额外HTML代码
         $this->assign('extra_html',  $this->_extra_html);  //是否ajax提交
+        
         parent::display($this->_template);
     }
 }

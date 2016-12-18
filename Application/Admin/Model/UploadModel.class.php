@@ -140,7 +140,6 @@ class UploadModel extends Model {
     public function upload($files) {
         // 获取文件信息
         $_FILES = $files ? $files : $_FILES;
-
         // 返回标准数据
         $return = array('error' => 0, 'success' => 1, 'status' => 1);
         $dir = I('request.dir') ? I('request.dir') : 'image';   // 上传类型image、flash、media、file

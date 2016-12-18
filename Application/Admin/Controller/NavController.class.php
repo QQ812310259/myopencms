@@ -45,7 +45,8 @@ class NavController extends AdminController {
             $tab_list[$key]['title'] = $val;
             $tab_list[$key]['href']  = U('index', array('group' => $key));
         }
-
+//         P($tab_list);exit;
+        
         // 使用Builder快速建立列表页面。
         $builder = new \Common\Builder\ListBuilder();
         $builder->setMetaTitle('导航列表') // 设置页面标题
