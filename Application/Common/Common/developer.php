@@ -27,3 +27,36 @@ function P($data){
     $str.='</pre>';
     echo $str;
 }
+/**
+ * 检测城市
+ */
+function getCity($ip){
+	$argv = array(
+			'ThinkPHP/Library/Vendor/Ip2Region/ip2region.db',
+			'binary'
+	);
+	$dbFile     = $argv[0];
+	if ( isset($argv[1]) ) {
+		switch ( strtolower($argv[1]) ) {
+			case 'binary':
+				$algorithm = 'Binary';
+				$method    = 'binarySearch';
+				break;
+			case 'memory':
+				$algorithm = 'Memory';
+				$method    = 'memorySearch';
+				break;
+		}
+	}
+	Vendor('Ip2Region.Ip2Region');
+	$ip2regionObj = new Ip2Region($dbFile);
+	$line = $ip;
+	$data   = $ip2regionObj->{$method}($line);
+	$city	=	explode('|', $data['region']);
+	// 		print_r($city[2].$city[3]);exit;
+	// 	if($city[2]	==	0){
+	// 		$city_info	=	getCity2($ip);
+	// 		return $city_info;
+	// 	}
+	return $city[2].'  '.$city[3];
+}
