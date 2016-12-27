@@ -161,7 +161,6 @@ class TypeAdmin extends AdminController {
                 $field[$unsort_key]['title'] = "未排序";
                 $field[$unsort_key]['field'] = $new_attribute_list;
             }
-
             // 使用FormBuilder快速建立表单页面。
             $builder = new \Common\Builder\FormBuilder();
             $builder->setMetaTitle('编辑模型')   // 设置页面标题
