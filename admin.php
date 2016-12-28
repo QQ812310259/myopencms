@@ -34,6 +34,11 @@ define('ENV_PRE', 'OC_');
  */
 define('MODULE_MARK', 'Admin');
 
+
+
+// define('BIND_MODULE','Admin');
+
+
 /**
  * 应用目录设置
  * 安全期间，建议安装调试完成后移动到非WEB目录

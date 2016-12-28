@@ -25,7 +25,6 @@ class AddonController extends AdminController {
         $addon_object = D('Addon');
         $addons = $addon_object
                 ->getAllAddon();
-
         // 使用Builder快速建立列表页面。
         $builder = new \Common\Builder\ListBuilder();
         $builder->setMetaTitle('插件列表')  // 设置页面标题
@@ -33,7 +32,7 @@ class AddonController extends AdminController {
                 ->addTopButton('forbid')   // 添加禁用按钮
                 ->addTableColumn('name', '标识')
                 ->addTableColumn('title', '名称')
-                ->addTableColumn('description', '描述')
+                ->addTableColumn('description', '描述','', '', '10%')
                 ->addTableColumn('status', '状态')
                 ->addTableColumn('author', '作者')
                 ->addTableColumn('version', '版本')
