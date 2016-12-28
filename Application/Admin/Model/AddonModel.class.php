@@ -87,6 +87,8 @@ class AddonModel extends Model {
             }
         }
         foreach ($addons as &$val) {
+        	/* 修改大小 */
+        	$val['description']	=	 mb_substr($val['description'],0,25).'...';
             switch ($val['status']) {
                 case '-1':  // 未安装
                     $val['status'] = '<i class="fa fa-trash" style="color:red"></i>';

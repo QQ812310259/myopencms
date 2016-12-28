@@ -131,8 +131,10 @@ body.admin_index_index {
 
 /* 页面底部版权 */
 .footer {
-    position: absolute;
+     position: absolute; 
     left: -1px;
+    width: 100%;
+    float: left;
     right: 0;
     bottom: 0;
 }

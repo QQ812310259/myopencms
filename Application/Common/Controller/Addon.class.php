@@ -117,6 +117,7 @@ abstract class Addon {
         $class = get_class($this);
         return substr($class,strrpos($class, '\\')+1, -5);
     }
+    
 
     /**
      * 检查信息
