@@ -4,7 +4,7 @@
 // +----------------------------------------------------------------------
 // | Copyright (c) 2014 http://www.opencmf.cn All rights reserved.
 // +----------------------------------------------------------------------
-// | Author: jry <598821125@qq.com>
+// | Author: yeyuz1 <812310259@qq.com>
 // +----------------------------------------------------------------------
 // 模块信息配置
 return array (
@@ -199,7 +199,7 @@ return array (
     ),
     25 => 
     array (
-      'id' => '25',
+      'id' => 25,
       'pid' => '24',
       'title' => '新增',
       'url' => 'Admin/User/add',
@@ -436,11 +436,11 @@ return array (
     ),
     58 => 
     array (
-      'id' => 58,
+      'id' => '58',
       'pid' => '2',
       'title' => '后台导航管理',
       'url' => 'Admin/ModelConfig/index',
-      'icon' => 'fa-cog',
+      'icon' => 'fa fa-cog',
     ),
     59 => 
     array (

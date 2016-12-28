@@ -106,7 +106,6 @@ class ModuleModel extends Model {
                 $menu_list[$module['name']]['id']   = $module['id'];
                 $menu_list[$module['name']]['name'] = $module['name'];
             }
-
             // 如果模块顶级菜单配置了top字段则移动菜单至top所指的模块下边
             foreach ($menu_list as $key => &$value) {
                 if ($value['top']) {
