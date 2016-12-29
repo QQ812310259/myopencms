@@ -65,6 +65,8 @@
                                 <include file='[builderpath]/FormType/tags.html' type='' />
                                 {// 拖动排序 }
                                 <include file='[builderpath]/FormType/board.html' type='' />
+								{// 四级联动 }
+                                <include file='[builderpath]/FormType/chinacity.html' type='' />
 
                                 <case value="group">
                                     <div class="form-group"></div>
@@ -129,6 +131,8 @@
                                                                 <include file='[builderpath]/FormType/tags.html' type='tab_' />
                                                                 {// 拖动排序 }
                                                                 <include file='[builderpath]/FormType/board.html' type='tab_' />
+																{// 四级联动 }
+                              								    <include file='[builderpath]/FormType/chinacity.html' type='' />
                                                                 // 扩展类型
                                                                 <default />
                                                                 {:hook('FormBuilderExtend', array('form' => $tab_form, 'type' => tab_))}

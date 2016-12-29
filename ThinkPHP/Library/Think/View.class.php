@@ -73,6 +73,7 @@ class View
         G('viewStartTime');
         // 视图开始标签
         Hook::listen('view_begin', $templateFile);
+//         P($this->tVar);exit;
         // 解析并获取模板内容
         $content = $this->fetch($templateFile, $content, $prefix);
         // 输出模板内容

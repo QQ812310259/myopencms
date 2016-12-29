@@ -21,7 +21,7 @@ use Common\Controller\Addon;
 
         public function install(){
             /* 先判断插件需要的钩子是否存在 */
-            D('Admin/Hook')->existHook($this->info['name'], $this->info['name'], $this->info['description']);
+            D('Admin/Hook')->existHook($this->info['name'], $this->info);
             return true;
         }
 

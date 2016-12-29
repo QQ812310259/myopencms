@@ -93,7 +93,7 @@ class AddonModel extends Model {
                 case '-1':  // 未安装
                     $val['status'] = '<i class="fa fa-trash" style="color:red"></i>';
                     $val['right_button']['install']['title'] = '安装';
-                    $val['right_button']['install']['attribute'] = 'class="label label-success ajax-get" href="'.U('install', array('addon_name' => $val['name'])).'"';
+                    $val['right_button']['install']['attribute'] = 'class="label label-success" href="'.U('install', array('addon_name' => $val['name'])).'"';
                     break;
                 case '0':  // 禁用
                     $val['status'] = '<i class="fa fa-ban" style="color:red"></i>';
