@@ -60,7 +60,6 @@ EOF;
         $map['group'] = array('eq', $group);
         $data_list = D('Category')->field('id,pid,group,doc_type,title,url,icon,create_time,sort,status')
                                   ->where($map)->order('sort asc,id asc')->select();
-
         // 非系统特殊类型则给标题加上链接以便于进入相应文档列表
         foreach ($data_list as &$item) {
             $document_type = D('Type')->find($item['doc_type']);  // 获取当前文档类型
@@ -185,6 +184,8 @@ EOF;
             $category_object = D('Category');
             $info = $category_object->find($id);
 
+//             P($info);exit;
+
             // 获取前台模版供选择
             if(C('CURRENT_THEME')){
                 $template_list = \Common\Util\File::get_dirs(getcwd().'/Theme/'.C('CURRENT_THEME').'/'.D('Index')->moduleName.'/Index');
@@ -204,7 +205,6 @@ EOF;
             $map = array();
             $map['status'] = array('EGT', -1);
             $map['group']  = $group;
-
             // 使用FormBuilder快速建立表单页面。
             $builder = new \Common\Builder\FormBuilder();
             $builder->setMetaTitle('编辑分类')   // 设置页面标题

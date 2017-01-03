@@ -42,6 +42,8 @@ class AdminController extends CommonController {
         $module_object = D('Admin/Module');
         $menu_list = $module_object->getAllMenu();
         $this->assign('_menu_list', $menu_list);  // 后台主菜单
+        
+        
 
         // 获取左侧导航
         if (!C('ADMIN_TABS')) {
@@ -188,7 +190,6 @@ class AdminController extends CommonController {
 
             $module_info  = D('Admin/Module')->where(array('name' => $name))->find($id);
             $db_config = $module_info['config'];
-
             // 构造配置
             if ($db_config) {
                 $db_config = json_decode($db_config, true);
@@ -217,7 +218,7 @@ class AdminController extends CommonController {
                     $module_config['config'][$key]['name'] = 'config['.$key.']';
                 }
             }
-
+//             P($module_info);exit;
             //使用FormBuilder快速建立表单页面。
             $builder = new \Common\Builder\FormBuilder();
             $builder->setMetaTitle('设置')  //设置页面标题

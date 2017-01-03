@@ -607,7 +607,7 @@ class ListBuilder extends CommonController {
                 $button['attribute'] = $this->compileHtmlAttr($button);
             }
         }
-
+//         P( $this->_alter_data_list);exit;
         $this->assign('meta_title',          $this->_meta_title);          // 页面标题
         $this->assign('top_button_list',     $this->_top_button_list);     // 顶部工具栏按钮
         $this->assign('search',              $this->_search);              // 搜索配置

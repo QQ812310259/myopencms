@@ -76,8 +76,6 @@ use Addons\ChinaCity\Controller\ChinaCityController as Region;
             empty($param['district']) ? $district =0 : $district = $param['district'];
             empty($param['community']) ? $community =0 : $community = $param['community'];
             
-            trace('写入信息','用户信息','debug');
-            
             $region = new ChinaCityController();
 
             $data = $region->loadArea($province, $city, $district, $community);

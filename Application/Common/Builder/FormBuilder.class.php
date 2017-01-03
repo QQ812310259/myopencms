@@ -173,7 +173,6 @@ class FormBuilder extends CommonController {
         $this->assign('form_items',  $this->_form_items);  //表单项目
         $this->assign('ajax_submit', $this->_ajax_submit); //额外HTML代码
         $this->assign('extra_html',  $this->_extra_html);  //是否ajax提交
-//         P($this->_form_items);exit;
         parent::display($this->_template);
     }
 }

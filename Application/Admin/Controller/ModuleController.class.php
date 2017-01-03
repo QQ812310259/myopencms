@@ -21,12 +21,20 @@ class ModuleController extends AdminController {
     public function index() {
         $module_object = D('Module');
         $data_list = $module_object->getAll();
-
+        
+        /* 增加生成模块按钮 */
+        $attr['title']	=	'新增';
+        $attr['class'] = 'btn btn-primary';
+ 		$attr['href']  = U('Admin/Module/add');
+ 		
+//  		P($data_list);exit;
+ 		
         // 使用Builder快速建立列表页面。
         $builder = new \Common\Builder\ListBuilder();
         $builder->setMetaTitle('模块列表')  // 设置页面标题
                 ->addTopButton('resume')   // 添加启用按钮
                 ->addTopButton('forbid')   // 添加禁用按钮
+                ->addTopButton('self', $attr)  //增加模块按钮
                 ->setSearch('请输入ID/标题', U('index'))
                 ->addTableColumn('name', '名称')
                 ->addTableColumn('title', '标题')
@@ -39,7 +47,36 @@ class ModuleController extends AdminController {
                 ->setTableDataList($data_list)     // 数据列表
                 ->display();
     }
+    
+    /**
+     * 模块增加
+     */
+    public function add(){
+    	//使用FormBuilder快速建立表单页面。
+    	$builder = new \Common\Builder\FormBuilder();
+    	$builder->setMetaTitle('新增模块')  //设置页面标题
+    	->setPostUrl('./build.php') //设置表单提交地址
+    	->addFormItem('module', 'text', '模型名称', '配置值 (请用全字母，首个字母要大写)')
+    	->setAjaxSubmit(false)
+    	->display();
+    }
 
+    /**
+     * 删除模块
+     * @author jry <598821125@qq.com>
+     */
+    public function removeModule() {
+    	$file = new \Common\Util\File();
+    	$module_root	=	APP_PATH.I('module');
+//     	P($module_root);exit;
+    	$result = $file->del_dir($module_root);
+    	if ($result) {
+    		$this->success("删除成功");
+    	} else {
+    		$this->error("删除失败");
+    	}
+    }
+    
     /**
      * 检查模块依赖
      * @author jry <598821125@qq.com>

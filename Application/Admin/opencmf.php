@@ -436,7 +436,7 @@ return array (
     ),
     58 => 
     array (
-      'id' => '58',
+      'id' => 58,
       'pid' => '2',
       'title' => '后台导航管理',
       'url' => 'Admin/ModelConfig/index',
@@ -465,6 +465,21 @@ return array (
       'url' => 'Admin/ModelConfig/edit',
       'icon' => '',
       'id' => 61,
+    ),
+    62 => 
+    array (
+      'pid' => '44',
+      'title' => '新增模块',
+      'url' => 'Admin/Module/add',
+      'icon' => '',
+      'id' => 62,
+    ),
+    63 => 
+    array (
+      'pid' => '44',
+      'title' => '删除模块',
+      'url' => 'Admin/Module/removeModule',
+      'icon' => '',
     ),
   ),
 )

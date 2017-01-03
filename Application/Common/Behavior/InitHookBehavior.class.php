@@ -22,7 +22,7 @@ class InitHookBehavior extends Behavior {
     public function run(&$content) {
         // 安装模式下直接返回
         if(defined('BIND_MODULE') && BIND_MODULE === 'Install') return;
-
+        
         // 添加插件配置
         $addon_config['ADDON_PATH'] = './Addons/';
         $addon_config['AUTOLOAD_NAMESPACE'] = C('AUTOLOAD_NAMESPACE');
@@ -30,9 +30,13 @@ class InitHookBehavior extends Behavior {
         C($addon_config);
 
         $data = S('hooks');
-        if (!$data || APP_DEBUG === true) {
+        if (!$data) {
             $hooks = D('Admin/Hook')->getField('name,addons');
             foreach ($hooks as $key => $value) {
+            	/* 自己添加，修复一个插件重复挂载 执行的问题 ps: 还不合理，一个钩子只能挂一个插件 待修复*/
+/*            	    if(!empty(Hook::get($key))){
+           	    	break;
+           	    } */
                 if ($value) {
                     $map['status'] = 1;
                     $names         = explode(',',$value);
@@ -40,6 +44,7 @@ class InitHookBehavior extends Behavior {
                     $data = D('Admin/Addon')->where($map)->getField('id,name');
                     if($data){
                         $addons = array_intersect($names, $data);
+                    	
                         Hook::add($key, array_map('get_addon_class', $addons));
                     }
                 }

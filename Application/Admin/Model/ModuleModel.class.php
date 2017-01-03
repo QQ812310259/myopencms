@@ -199,6 +199,8 @@ class ModuleModel extends Model {
                     $val['status_icon'] = '<i class="fa fa-download text-success"></i>';
                     $val['right_button']['install_before']['title'] = '安装';
                     $val['right_button']['install_before']['attribute'] = 'class="label label-success" href="'.U('install_before', array('name' => $val['name'])).'"';
+                    $val['right_button']['removeModule']['title'] = '删除';
+                    $val['right_button']['removeModule']['attribute'] = 'class="label label-danger " href="'.U('removeModule', array('module' => $val['name'])).'"';
                     break;
                 case '0':  // 禁用
                     $val['status_icon'] = '<i class="fa fa-ban text-danger"></i>';

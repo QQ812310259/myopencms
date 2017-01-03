@@ -26,6 +26,7 @@ class Hook
      */
     public static function add($tag, $name)
     {
+    	
         if (!isset(self::$tags[$tag])) {
             self::$tags[$tag] = array();
         }
@@ -94,8 +95,11 @@ class Hook
                 G($tag . 'Start');
                 trace('[ ' . $tag . ' ] --START--', '', 'INFO');
             }
+            
             foreach (self::$tags[$tag] as $name) {
                 APP_DEBUG && G($name . '_start');
+                
+                
                 $result = self::exec($name, $tag, $params);
                 if (APP_DEBUG) {
                     G($name . '_end');
@@ -123,6 +127,7 @@ class Hook
      */
     public static function exec($name, $tag, &$params = null)
     {
+    	
         if ('Behavior' == substr($name, -8)) {
             // 行为扩展必须用run入口方法
             $tag = 'run';

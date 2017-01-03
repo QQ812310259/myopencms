@@ -9,7 +9,10 @@
  * 使用方法:
  * 将build.php放到根目录下,执行php build.php 模块名
  */
-$argv	=	array('modulename','Vote');
+if($_POST['module']){
+	$argv	=	array('modulename',$_POST['module']); 
+}
+
 if(count($argv) < 2) {
 	exit('请输入模块名!' . "\n");
 }
@@ -24,7 +27,7 @@ define('CONF_PATH', MODULE_PATH . '/Conf');
 define('CONTROLLER_PATH', MODULE_PATH . '/Controller');
 define('MODEL_PATH', MODULE_PATH . '/Model');
 define('SQL_PATH', MODULE_PATH . '/Sql');
-define('TAGLIB_PATH', MODULE_PATH . '/Taglib');
+define('TAGLIB_PATH', MODULE_PATH . '/TagLib');
 define('VIEW_ADMIN_PATH', MODULE_PATH . '/View/Admin/Index');
 define('VIEW_INDEX_PATH', MODULE_PATH . '/View/Index');
 
@@ -46,7 +49,7 @@ function buildFile($moduleName) {
 	file_put_contents(ADMIN_PATH . '/IndexAdmin.class.php', getAdminContent($moduleName));
 	file_put_contents(BEHAVIOR_PATH . '/' . $moduleName . '.class.php', getBehaviorContent($moduleName));
 	file_put_contents(COMMON_PATH . '/function.php', getCommonContent());
-	file_put_contents(CONF_PATH . '/conf.php', getConfContent());
+	file_put_contents(CONF_PATH . '/config.php', getConfContent());
 	file_put_contents(CONTROLLER_PATH . '/IndexController.php', getControllerContent($moduleName));
 	file_put_contents(MODEL_PATH . '/IndexModel.class.php', getModelContent($moduleName));
 	file_put_contents(SQL_PATH . '/install.sql', getInstallSqlContent($moduleName));
@@ -484,7 +487,7 @@ return array(
         'icon'        => 'fa fa-flask',
         'icon_color'  => '#F9B440',
         'description' => '描述',
-        'developer'   => 'Jess',
+        'developer'   => 'yeyuz1',
         'website'     => 'http://jesuspan.sinaapp.com',
         'version'     => '1.0.0',
         'dependences' => array(
@@ -568,3 +571,6 @@ EOF;
 
 buildDir();
 buildFile($moduleName);
+
+header('Location:./admin.php?s=/Admin/Module/index');
+

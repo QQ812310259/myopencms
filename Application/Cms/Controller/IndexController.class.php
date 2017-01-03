@@ -61,7 +61,6 @@ class IndexController extends HomeController {
         // 获取分类信息
         $map['cid'] = $cid;
         $category_info = D('Category')->find($cid);
-
         // 获取文档公共属性信息
         if ($category_info['index_template']) {
             $template = $category_info['index_template'];

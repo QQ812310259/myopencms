@@ -83,7 +83,7 @@ class SliderController extends AdminController {
             $builder = new \Common\Builder\FormBuilder();
             $builder->setMetaTitle('新增幻灯')  // 设置页面标题
                     ->setPostUrl(U('add'))      // 设置表单提交地址
-                    ->addFormItem('title', 'chinacity', '标题', '标题')
+                    ->addFormItem('title', 'text', '标题', '标题')
                     ->addFormItem('cover', 'picture', '图片', '切换图片')
                     ->addFormItem('url', 'text', '链接', '点击跳转链接')
                     ->addFormItem('sort', 'num', '排序', '用于显示的顺序')
