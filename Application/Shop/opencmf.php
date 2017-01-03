@@ -142,6 +142,14 @@ return array (
       'title' => '编辑分类',
       'url' => 'shop/type/edit',
       'icon' => '',
+      'id' => 7,
+    ),
+    8 => 
+    array (
+      'pid' => '4',
+      'title' => '产品上传',
+      'url' => 'shop/product/index',
+      'icon' => 'fa fa-stethoscope',
     ),
   ),
 )

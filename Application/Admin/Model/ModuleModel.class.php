@@ -77,7 +77,7 @@ class ModuleModel extends Model {
         $admin_menu = $this->getFieldByName($module_name, 'admin_menu');
         $admin_menu = json_decode($admin_menu, true);
         foreach ($admin_menu as $key => $val) {
-            if (isset($val['url'])) {
+            if (!empty($val['url'])) {
                 $config_url  = U($val['url']);
                 $current_url = U(MODULE_NAME.'/'.CONTROLLER_NAME.'/'.ACTION_NAME);
                 if ($config_url === $current_url) {
@@ -134,6 +134,7 @@ class ModuleModel extends Model {
         if (!$current_menu) {
             $current_menu = $this->getCurrentMenu();
         }
+
         if (!$current_menu) {
             return false;
         }
