@@ -43,7 +43,6 @@ class AdminController extends CommonController {
         $menu_list = $module_object->getAllMenu();
         $this->assign('_menu_list', $menu_list);  // 后台主菜单
         
-        
 
         // 获取左侧导航
         if (!C('ADMIN_TABS')) {

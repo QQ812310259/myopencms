@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2017 �?01 �?04 �?09:07
--- 服务器版本: 5.7.11
--- PHP 版本: 5.6.19
+-- 生成日期: 2017 �?01 �?04 �?15:47
+-- 服务器版本: 5.7.9
+-- PHP 版本: 5.6.16
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -35,14 +35,15 @@ CREATE TABLE IF NOT EXISTS `oc_admin_access` (
   `sort` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
   `status` tinyint(3) NOT NULL DEFAULT '0' COMMENT '状态',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='后台管理员与用户组对应关系表' AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='后台管理员与用户组对应关系表' AUTO_INCREMENT=3 ;
 
 --
 -- 转存表中的数据 `oc_admin_access`
 --
 
 INSERT INTO `oc_admin_access` (`id`, `uid`, `group`, `create_time`, `update_time`, `sort`, `status`) VALUES
-(1, 1, 1, 1438651748, 1438651748, 0, 1);
+(1, 1, 1, 1438651748, 1438651748, 0, 1),
+(2, 2, 2, 1483538521, 1483538521, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -148,14 +149,15 @@ CREATE TABLE IF NOT EXISTS `oc_admin_group` (
   `sort` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '排序（同级有效）',
   `status` tinyint(3) NOT NULL DEFAULT '0' COMMENT '状态',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='部门信息表' AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='部门信息表' AUTO_INCREMENT=3 ;
 
 --
 -- 转存表中的数据 `oc_admin_group`
 --
 
 INSERT INTO `oc_admin_group` (`id`, `pid`, `title`, `icon`, `menu_auth`, `create_time`, `update_time`, `sort`, `status`) VALUES
-(1, 0, '超级管理员', '', '', 1426881003, 1427552428, 0, 1);
+(1, 0, '超级管理员', '', '', 1426881003, 1427552428, 0, 1),
+(2, 0, '管理员', '', '{"Admin":["1","2","3","4","5","6","7","8","9","10","11","12","17","18","19","20","21","22"],"User":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],"Shop":["1","2","3","4","5","6","7","8","9","10","11","12","13"]}', 1483538276, 1483542437, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -421,14 +423,15 @@ CREATE TABLE IF NOT EXISTS `oc_admin_user` (
   `status` tinyint(3) NOT NULL DEFAULT '0' COMMENT '状态',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='用户账号表' AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='用户账号表' AUTO_INCREMENT=3 ;
 
 --
 -- 转存表中的数据 `oc_admin_user`
 --
 
 INSERT INTO `oc_admin_user` (`id`, `user_type`, `nickname`, `username`, `password`, `email`, `email_bind`, `mobile`, `mobile_bind`, `avatar`, `score`, `money`, `reg_ip`, `reg_type`, `create_time`, `update_time`, `status`) VALUES
-(1, 1, '超级管理员', 'admin', 'c0753bab4c5d066075304fa2b7596792', '', 0, '', 0, 0, 0, '0.00', 0, '', 1438651748, 1438651748, 1);
+(1, 1, '超级管理员', 'admin', 'c0753bab4c5d066075304fa2b7596792', '', 0, '', 0, 0, 0, '0.00', 0, '', 1438651748, 1438651748, 1),
+(2, 1, '管理员', 'shop', '4f4ccd4c9cd60160b050ab84b1503c46', '123465@qq.com', 0, '13169279796', 0, 0, 0, '0.00', 0, 'admin', 1483538467, 1483538467, 1);
 
 -- --------------------------------------------------------
 
@@ -45830,7 +45833,7 @@ CREATE TABLE IF NOT EXISTS `oc_shop_product` (
 
 INSERT INTO `oc_shop_product` (`id`, `group`, `type`, `title`, `pic`, `origin`, `place`, `placetype`, `price`, `sn`, `sell`, `create_time`, `update_time`, `sort`, `status`) VALUES
 (1, 1, 2, '佛山本地猪', 9, 2, '73', 2, 5000.00, '06696', 1, 1483499224, 1483520095, 0, 1),
-(2, 1, 2, '正宗猪肉', 0, 0, '289', 2, 699.00, '003695', 1, 1483510960, 1483510960, 0, 1);
+(2, 1, 2, '正宗猪肉', 0, 0, '289', 2, 669.00, '003695', 1, 1483510960, 1483537739, 0, 1);
 
 -- --------------------------------------------------------
 

@@ -100,8 +100,29 @@ class ModuleModel extends Model {
             $system_module_list = $this->where($con)->order('sort asc, id asc')->select();
             $tree = new tree();
             $menu_list = array();
+            /* 去除没权限的功能 */
+            $user_group = D('Admin/Access')->getFieldByUid(session('user_auth.uid'), 'group');  // 获得当前登录用户信息
+            if ($user_group !== '1') {
+                $group_info = D('Admin/Group')->find($user_group);
+                // 获得当前登录用户所属部门的权限列表
+                $group_auth = json_decode($group_info['menu_auth'], true);
+            }
+            
             foreach ($system_module_list as $key => &$module) {
-                $temp = $tree->list_to_tree(json_decode($module['admin_menu'], true));
+                $module_list_id     =   json_decode($module['admin_menu'],true);
+                /* 去除多余 */
+                if ($user_group !== '1') {
+                    foreach ($module_list_id as $keyy => $vo){
+                        if (!in_array($keyy,$group_auth[$module['name']]))
+                        {
+                            unset($module_list_id[$keyy]);
+                        }
+                    }
+                }else{
+                    
+                }
+                $temp = $tree->list_to_tree($module_list_id);
+//                 P($user_group);exit;
                 $menu_list[$module['name']] = $temp[0];
                 $menu_list[$module['name']]['id']   = $module['id'];
                 $menu_list[$module['name']]['name'] = $module['name'];
@@ -118,7 +139,6 @@ class ModuleModel extends Model {
                     }
                 }
             }
-
             S('MENU_LIST', $menu_list, 3600);  // 缓存配置
         }
         return $menu_list;

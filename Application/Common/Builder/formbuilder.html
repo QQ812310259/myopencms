@@ -18,36 +18,76 @@
                     <div class="col-xs-12">
                         <volist name="form_items" id="form" key="k">
                             <switch name="form.type">
-                                <include file='[builderpath]/FormType/hidden.html' type='' />
+								<case value="hidden">
+								<include file='[builderpath]/FormType/hidden.html' type='' />
                                 {// 不可修改文本 }
-                                <include file='[builderpath]/FormType/static.html' type='' />
+								</case>
+								<case value="static">
+								<include file='[builderpath]/FormType/static.html' type='' />
                                 {// 数字 }
-                                <include file='[builderpath]/FormType/num.html' type='' />
+								</case>
+								<case value="num">
+								<include file='[builderpath]/FormType/num.html' type='' />
                                 {// 价格 }
-                                <include file='[builderpath]/FormType/price.html' type='' />
+								</case>
+								<case value="price">
+								<include file='[builderpath]/FormType/price.html' type='' />
                                 {// 字符串 }
-                                <include file='[builderpath]/FormType/text.html' type='' />
+								</case>
+								<case value="text">
+								<include file='[builderpath]/FormType/text.html' type='' />
                                 {// 文本 }
-                                <include file='[builderpath]/FormType/textarea.html' type='' />
+								</case>
+								<case value="textarea">
+								<include file='[builderpath]/FormType/textarea.html' type='' />
                                 {// 数组 }
-                                <include file='[builderpath]/FormType/array.html' type='' />
+								</case>
+								<case value="array">
+								<include file='[builderpath]/FormType/array.html' type='' />
                                 {// 密码 }
-                                <include file='[builderpath]/FormType/password.html' type='' />
+								</case>
+								<case value="password">
+								<include file='[builderpath]/FormType/password.html' type='' />
                                 {// 单选按钮 }
-                                <include file='[builderpath]/FormType/radio.html' type='' />
+								</case>
+								<case value="radio">
+								<include file='[builderpath]/FormType/radio.html' type='' />
                                 {// 复选框 }
-                                <include file='[builderpath]/FormType/checkbox.html' type='' />
+								</case>
+								<case value="checkbox">
+								<include file='[builderpath]/FormType/checkbox.html' type='' />
                                 {// 下拉框 }
-                                <include file='[builderpath]/FormType/select.html' type='' />
+								</case>
+								<case value="select">
+								<include file='[builderpath]/FormType/select.html' type='' />
                                 {// 图标 }
-                                <include file='[builderpath]/FormType/icon.html' type='' />
+								</case>
+								<case value="icon">
+								<include file='[builderpath]/FormType/icon.html' type='' />
                                 {// 日期 }
-                                <include file='[builderpath]/FormType/date.html' type='' />
+								</case>
+								<case value="date">
+								<include file='[builderpath]/FormType/date.html' type='' />
                                 {// 时间 }
-                                <include file='[builderpath]/FormType/datetime.html' type='' />
+								</case>
+								<case value="datetime">
+								<include file='[builderpath]/FormType/datetime.html' type='' />
                                 {// 图片 }
-                                <include file='[builderpath]/FormType/picture.html' type='' />
+								</case>
+								<case value="picture">
+								<include file='[builderpath]/FormType/picture.html' type='' />
                                 {// 图片(多图) }
+								</case>
+								
+								<case value="picture">
+								<include file='[builderpath]/FormType/picture.html' type='' />
+                                {// 图片(多图) }
+								</case>
+								<case value="picture">
+								<include file='[builderpath]/FormType/picture.html' type='' />
+                                {// 图片(多图) }
+								</case>
+								
                                 <include file='[builderpath]/FormType/pictures.html' type='' />
                                 {// 文件 }
                                 <include file='[builderpath]/FormType/file.html' type='' />
