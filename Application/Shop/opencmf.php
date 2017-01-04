@@ -63,6 +63,18 @@ return array (
       'type' => 'array',
       'value' => '1:默认',
     ),
+    'sell_list' => 
+    array (
+      'title' => '出售方式',
+      'type' => 'array',
+      'value' => '1:默认',
+    ),
+    'place_list' => 
+    array (
+      'title' => '地区分类',
+      'type' => 'array',
+      'value' => '1:默认',
+    ),
     'taglib' => 
     array (
       'title' => '加载标签库',
@@ -146,10 +158,51 @@ return array (
     ),
     8 => 
     array (
+      'id' => 8,
       'pid' => '4',
-      'title' => '产品上传',
+      'title' => '产品管理',
       'url' => 'shop/product/index',
       'icon' => 'fa fa-stethoscope',
+    ),
+    9 => 
+    array (
+      'pid' => '8',
+      'title' => '新增产品',
+      'url' => 'shop/product/add',
+      'icon' => '',
+      'id' => 9,
+    ),
+    10 => 
+    array (
+      'pid' => '8',
+      'title' => '产品编辑',
+      'url' => 'shop/product/edit',
+      'icon' => '',
+      'id' => 10,
+    ),
+    11 => 
+    array (
+      'id' => 11,
+      'pid' => '4',
+      'title' => '地区管理',
+      'url' => 'shop/place/index',
+      'icon' => 'fa fa-hdd-o',
+    ),
+    12 => 
+    array (
+      'id' => 12,
+      'pid' => '11',
+      'title' => '新增地区',
+      'url' => 'shop/place/add',
+      'icon' => '',
+    ),
+    13 => 
+    array (
+      'id' => '13',
+      'pid' => '11',
+      'title' => '编辑地区',
+      'url' => 'shop/place/edit',
+      'icon' => '',
     ),
   ),
 )

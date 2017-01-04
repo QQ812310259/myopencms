@@ -103,4 +103,47 @@ class ChinaCityController extends AddonController{
 
 
 	}
+	public function getcityList($city_id){
+		$city_info	=	M('district')->where(array('id'=>$city_id))->find();
+		if($city_info['upid'] == 0){
+			return $city_id_list['province']	=	$city_id;
+		}else{
+			switch ($city_info['level']){
+				case 2 :
+					$city_id_list['province']	=	$city_info['upid'];
+					$city_id_list['city']	=	$city_id;
+					break;
+				case 3 :
+					$city_id_list['province']	= 	M('district')->getFieldByid($city_info['upid'],'upid');
+					$city_id_list['city']	=	$city_info['upid'];
+					$city_id_list['district']	= 	$city_id;
+					break;
+				case 4 :
+					$city_id_list['province']	= 	M('district')->getFieldByid($city_id_list['city'],'upid');
+					$city_id_list['city']	=	M('district')->getFieldByid($city_info['upid'],'upid');
+					$city_id_list['district']	= 	$city_info['upid'];
+					$city_id_list['community']	= 	$city_id;
+					break;
+			}
+			
+		}
+		return $city_id_list;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -71,15 +71,21 @@ use Addons\ChinaCity\Controller\ChinaCityController as Region;
          */
         public function J_China_City($param){
 
-            empty($param['province']) ? $province =0 : $province = $param['province'];
+//             empty($param['province']) ? $province =0 : $province = $param['province'];
             empty($param['city']) ? $city =0 : $city = $param['city'];
-            empty($param['district']) ? $district =0 : $district = $param['district'];
-            empty($param['community']) ? $community =0 : $community = $param['community'];
-            
+//             empty($param['district']) ? $district =0 : $district = $param['district'];
+//             empty($param['community']) ? $community =0 : $community = $param['community'];
+			$info['title']	=		$param['title'];
+			$info['name']	=		$param['name'];
+			$info['class']	=		$param['class'];
+			
             $region = new ChinaCityController();
-
-            $data = $region->loadArea($province, $city, $district, $community);
-
+			$city_id	=	$region->getcityList($param['city']);
+			
+// 			P($info);exit;
+            
+            $data = $region->loadArea($city_id['province'], $city_id['city'], $city_id['district'], $city_id['community']);
+            $this->assign('info', $info);
             $this->assign('region', $data);
             $this->display('chinacity');
         }

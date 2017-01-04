@@ -13,12 +13,12 @@ use \Common\Util\Tree;
  * 导航模型
  * @author jry <598821125@qq.com>
  */
-class TypeModel extends Model {
+class PlaceModel extends Model {
     /**
      * 数据库表名
      * @author jry <598821125@qq.com>
      */
-    protected $tableName = 'shop_type';
+    protected $tableName = 'shop_place';
 
     /**
      * 自动验证规则
@@ -42,8 +42,8 @@ class TypeModel extends Model {
      * 栏目分组
      * @author jry <598821125@qq.com>
      */
-    public function group_list() {
-    	return parse_attr(C('shop_config.group_list'));
+    public function place_list() {
+    	return parse_attr(C('shop_config.place_list'));
     }
     
     /**
