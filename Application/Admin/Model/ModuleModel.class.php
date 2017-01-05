@@ -118,14 +118,15 @@ class ModuleModel extends Model {
                             unset($module_list_id[$keyy]);
                         }
                     }
-                }else{
-                    
                 }
-                $temp = $tree->list_to_tree($module_list_id);
-//                 P($user_group);exit;
-                $menu_list[$module['name']] = $temp[0];
-                $menu_list[$module['name']]['id']   = $module['id'];
-                $menu_list[$module['name']]['name'] = $module['name'];
+                /* 改善模块 权限显示 */
+                if(array_key_exists($module['name'],$group_auth) || $user_group == '1'){
+                	$temp = $tree->list_to_tree($module_list_id);
+	                $menu_list[$module['name']] = $temp[0];
+	                $menu_list[$module['name']]['id']   = $module['id'];
+	                $menu_list[$module['name']]['name'] = $module['name'];
+                }
+                
             }
             // 如果模块顶级菜单配置了top字段则移动菜单至top所指的模块下边
             foreach ($menu_list as $key => &$value) {
@@ -139,6 +140,7 @@ class ModuleModel extends Model {
                     }
                 }
             }
+//             P($menu_list);exit;
             S('MENU_LIST', $menu_list, 3600);  // 缓存配置
         }
         return $menu_list;

@@ -82,6 +82,7 @@ class TypeAdmin extends AdminController {
             $builder = new \Common\Builder\FormBuilder();
             $builder->setMetaTitle('新增分类')  // 设置页面标题
                     ->setPostUrl(U(''))     // 设置表单提交地址
+                    ->addFormItem('id', 'hidden', 'ID', 'ID')
                     ->addFormItem('pid', 'select', '上级分类', '上级分类', select_list_as_tree('type', '', '顶级分类'))
                     ->addFormItem('title', 'text', '分类标题', '分类前台显示标题')
                     ->addFormItem('sort', 'num', '排序', '用于显示的顺序')
@@ -113,6 +114,7 @@ class TypeAdmin extends AdminController {
             $builder = new \Common\Builder\FormBuilder();
             $builder->setMetaTitle('编辑分类')  // 设置页面标题
                     ->setPostUrl(U(''))     // 设置表单提交地址
+                    ->addFormItem('id', 'hidden', 'ID', 'ID')
                     ->addFormItem('pid', 'select', '上级分类', '上级分类', select_list_as_tree('type', '', '顶级分类'))
                     ->addFormItem('title', 'text', '分类标题', '分类前台显示标题')
                     ->addFormItem('sort', 'num', '排序', '用于显示的顺序')

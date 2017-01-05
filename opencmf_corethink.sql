@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2017 �?01 �?04 �?15:47
--- 服务器版本: 5.7.9
--- PHP 版本: 5.6.16
+-- 生成日期: 2017 �?01 �?05 �?09:11
+-- 服务器版本: 5.7.11
+-- PHP 版本: 5.6.19
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -104,12 +104,12 @@ CREATE TABLE IF NOT EXISTS `oc_admin_config` (
 
 INSERT INTO `oc_admin_config` (`id`, `title`, `name`, `value`, `group`, `type`, `options`, `tip`, `create_time`, `update_time`, `sort`, `status`) VALUES
 (1, '站点开关', 'TOGGLE_WEB_SITE', '1', 1, 'select', '0:关闭\r\n1:开启', '站点关闭后将不能访问', 1378898976, 1406992386, 1, 1),
-(2, '网站标题', 'WEB_SITE_TITLE', 'CoreThink', 1, 'text', '', '网站标题前台显示标题', 1378898976, 1379235274, 2, 1),
+(2, '网站标题', 'WEB_SITE_TITLE', 'Samcms', 1, 'text', '', '网站标题前台显示标题', 1378898976, 1483606692, 2, 1),
 (3, '网站口号', 'WEB_SITE_SLOGAN', '互联网WEB产品最佳选择', 1, 'text', '', '网站口号、宣传标语、一句话介绍', 1434081649, 1434081649, 3, 1),
 (4, '网站LOGO', 'WEB_SITE_LOGO', '', 1, 'picture', '', '网站LOGO', 1407003397, 1407004692, 4, 1),
-(5, '网站描述', 'WEB_SITE_DESCRIPTION', 'CoreThink是一套基于统一核心的通用互联网+信息化服务解决方案，追求简单、高效、卓越。可轻松实现支持多终端的WEB产品快速搭建、部署、上线。系统功能采用模块化、组件化、插件化等开放化低耦合设计，应用商城拥有丰富的功能模块、插件、主题，便于用户灵活扩展和二次开发。', 1, 'textarea', '', '网站搜索引擎描述', 1378898976, 1379235841, 5, 1),
+(5, '网站描述', 'WEB_SITE_DESCRIPTION', 'Samcms是一套基于统一核心的通用互联网+信息化服务解决方案，追求简单、高效、卓越。可轻松实现支持多终端的WEB产品快速搭建、部署、上线。系统功能采用模块化、组件化、插件化等开放化低耦合设计，应用商城拥有丰富的功能模块、插件、主题，便于用户灵活扩展和二次开发。', 1, 'textarea', '', '网站搜索引擎描述', 1378898976, 1483606749, 5, 1),
 (6, '网站关键字', 'WEB_SITE_KEYWORD', 'OpenCMF、CoreThink、南京科斯克网络科技', 1, 'textarea', '', '网站搜索引擎关键字', 1378898976, 1381390100, 6, 1),
-(7, '版权信息', 'WEB_SITE_COPYRIGHT', 'Copyright © 南京科斯克网络科技有限公司 All rights reserved.', 1, 'text', '', '设置在网站底部显示的版权信息，如“版权所有 © 2014-2015 科斯克网络科技”', 1406991855, 1406992583, 7, 1),
+(7, '版权信息', 'WEB_SITE_COPYRIGHT', 'Copyright © 新麦网络科技有限公司 All rights reserved.', 1, 'text', '', '设置在网站底部显示的版权信息，如“版权所有 © 2014-2015 新麦网络科技”', 1406991855, 1483606721, 7, 1),
 (8, '网站备案号', 'WEB_SITE_ICP', '苏ICP备1502009-2号', 1, 'text', '', '设置在网站底部显示的备案号，如“苏ICP备1502009-2号"', 1378900335, 1415983236, 8, 1),
 (9, '站点统计', 'WEB_SITE_STATISTICS', '', 1, 'textarea', '', '支持百度、Google、cnzz等所有Javascript的统计代码', 1378900335, 1415983236, 9, 1),
 (10, '文件上传大小', 'UPLOAD_FILE_SIZE', '10', 2, 'num', '', '文件上传大小单位：MB', 1428681031, 1428681031, 1, 1),
@@ -157,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `oc_admin_group` (
 
 INSERT INTO `oc_admin_group` (`id`, `pid`, `title`, `icon`, `menu_auth`, `create_time`, `update_time`, `sort`, `status`) VALUES
 (1, 0, '超级管理员', '', '', 1426881003, 1427552428, 0, 1),
-(2, 0, '管理员', '', '{"Admin":["1","2","3","4","5","6","7","8","9","10","11","12","17","18","19","20","21","22"],"User":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],"Shop":["1","2","3","4","5","6","7","8","9","10","11","12","13"]}', 1483538276, 1483542437, 0, 1);
+(2, 0, '管理员', '', '{"Admin":["1","2","3","4","5","6","7","8","9","10","11","12","17","18","19","20","21","22"],"User":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"],"Shop":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"]}', 1483538276, 1483583301, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -226,7 +226,7 @@ INSERT INTO `oc_admin_module` (`id`, `name`, `title`, `logo`, `icon`, `icon_colo
 (2, 'User', '用户', '', 'fa fa-users', '#F9B440', '用户中心模块', '南京科斯克网络科技有限公司', '1.3.0', '{"title":{"center":"\\u4e2a\\u4eba\\u4fe1\\u606f"},"center":[{"title":"\\u4fee\\u6539\\u4fe1\\u606f","icon":"fa fa-edit","url":"User\\/Center\\/profile","color":"#F68A3A"},{"title":"\\u6d88\\u606f\\u4e2d\\u5fc3","icon":"fa fa-envelope-o","url":"User\\/Message\\/index","badge":["User\\/Message","newMessageCount"],"badge_class":"badge-danger","color":"#80C243"},{"title":"\\u4fee\\u6539\\u5bc6\\u7801","icon":"fa fa-lock","url":"User\\/Center\\/password","color":"#45BEC3"}],"main":[{"title":"\\u4e2a\\u4eba\\u4e2d\\u5fc3","icon":"fa fa-tachometer","url":"User\\/Center\\/index"}]}', '{"status":"1","reg_toggle":"1","allow_reg_type":["username"],"deny_username":"","user_protocol":"\\u8bf7\\u5728\\u201c\\u540e\\u53f0\\u2014\\u2014\\u7528\\u6237\\u2014\\u2014\\u7528\\u6237\\u8bbe\\u7f6e\\u201d\\u4e2d\\u8bbe\\u7f6e","behavior":["User"]}', '{"1":{"pid":"0","title":"\\u7528\\u6237","icon":"fa fa-user","id":"1"},"2":{"pid":"1","title":"\\u7528\\u6237\\u7ba1\\u7406","icon":"fa fa-folder-open-o","id":"2"},"3":{"pid":"2","title":"\\u7528\\u6237\\u8bbe\\u7f6e","icon":"fa fa-wrench","url":"User\\/Index\\/module_config","id":"3"},"4":{"pid":"2","title":"\\u7528\\u6237\\u7edf\\u8ba1","icon":"fa fa-area-chart","url":"User\\/Index\\/index","id":"4"},"5":{"pid":"2","title":"\\u7528\\u6237\\u5217\\u8868","icon":"fa fa-list","url":"User\\/User\\/index","id":"5"},"6":{"pid":"5","title":"\\u65b0\\u589e","url":"User\\/User\\/add","id":"6"},"7":{"pid":"5","title":"\\u7f16\\u8f91","url":"User\\/User\\/edit","id":"7"},"8":{"pid":"5","title":"\\u8bbe\\u7f6e\\u72b6\\u6001","url":"User\\/User\\/setStatus","id":"8"},"9":{"pid":"2","title":"\\u7528\\u6237\\u7c7b\\u578b","icon":"fa fa-user","url":"User\\/Type\\/index","id":"9"},"10":{"pid":"9","title":"\\u65b0\\u589e","url":"User\\/Type\\/add","id":"10"},"11":{"pid":"9","title":"\\u7f16\\u8f91","url":"User\\/Type\\/edit","id":"11"},"12":{"pid":"9","title":"\\u8bbe\\u7f6e\\u72b6\\u6001","url":"User\\/Type\\/setStatus","id":"12"},"13":{"pid":"9","title":"\\u5b57\\u6bb5\\u7ba1\\u7406","icon":"fa fa-users","url":"User\\/Attribute\\/index","id":"13"},"14":{"pid":"13","title":"\\u65b0\\u589e","url":"User\\/Attribute\\/add","id":"14"},"15":{"pid":"13","title":"\\u7f16\\u8f91","url":"User\\/Attribute\\/edit","id":"15"},"16":{"pid":"13","title":"\\u8bbe\\u7f6e\\u72b6\\u6001","url":"User\\/Attribute\\/setStatus","id":"16"}}', 0, 1471174771, 1471174771, 0, 1),
 (3, 'Cms', 'CMS', '', 'fa fa-newspaper-o', '#9933FF', 'CMS门户模块', '南京科斯克网络科技有限公司', '1.3.0', '{"title":{"center":"\\u5185\\u5bb9\\u7ba1\\u7406"},"center":[{"title":"\\u6211\\u7684\\u6587\\u6863","icon":"fa fa-list","url":"Cms\\/Index\\/my","color":"#F68A3A"},{"title":"\\u6536\\u85cf\\u7684\\u6587\\u6863","icon":"fa fa-heart","url":"Cms\\/Mark\\/my","color":"#398CD2"}]}', '{"need_check":"0","toggle_comment":"1","group_list":"1:\\u9ed8\\u8ba4\\r\\n2:\\u65b0\\u95fb","cate":"a:1","taglib":["Cms"]}', '{"1":{"id":"1","pid":"0","title":"CMS","icon":"fa fa-newspaper-o"},"2":{"pid":"1","title":"\\u5185\\u5bb9\\u7ba1\\u7406","icon":"fa fa-folder-open-o","id":"2"},"3":{"pid":"2","title":"\\u6587\\u7ae0\\u914d\\u7f6e","icon":"fa fa-wrench","url":"Cms\\/Index\\/module_config","id":"3"},"4":{"pid":"2","title":"\\u6587\\u6863\\u6a21\\u578b","icon":"fa fa-th-large","url":"Cms\\/Type\\/index","id":"4"},"5":{"pid":"4","title":"\\u65b0\\u589e","url":"Cms\\/Type\\/add","id":"5"},"6":{"pid":"4","title":"\\u7f16\\u8f91","url":"Cms\\/Type\\/edit","id":"6"},"7":{"pid":"4","title":"\\u8bbe\\u7f6e\\u72b6\\u6001","url":"Cms\\/Type\\/setStatus","id":"7"},"8":{"pid":"4","title":"\\u5b57\\u6bb5\\u7ba1\\u7406","icon":"fa fa-database","url":"Cms\\/Attribute\\/index","id":"8"},"9":{"pid":"8","title":"\\u65b0\\u589e","url":"Cms\\/Attribute\\/add","id":"9"},"10":{"pid":"8","title":"\\u7f16\\u8f91","url":"Cms\\/Attribute\\/edit","id":"10"},"11":{"pid":"8","title":"\\u8bbe\\u7f6e\\u72b6\\u6001","url":"Cms\\/Attribute\\/setStatus","id":"11"},"12":{"pid":"2","title":"\\u680f\\u76ee\\u5206\\u7c7b","icon":"fa fa-navicon","url":"Cms\\/Category\\/index","id":"12"},"13":{"pid":"12","title":"\\u65b0\\u589e","url":"Cms\\/Category\\/add","id":"13"},"14":{"pid":"12","title":"\\u7f16\\u8f91","url":"Cms\\/Category\\/edit","id":"14"},"15":{"pid":"12","title":"\\u8bbe\\u7f6e\\u72b6\\u6001","url":"Cms\\/Category\\/setStatus","id":"15"},"16":{"pid":"12","title":"\\u6587\\u6863\\u7ba1\\u7406","icon":"fa fa-edit","url":"Cms\\/Index\\/index","id":"16"},"17":{"pid":"16","title":"\\u65b0\\u589e","url":"Cms\\/Index\\/add","id":"17"},"18":{"pid":"16","title":"\\u65b0\\u589e","url":"Cms\\/Index\\/edit","id":"18"},"19":{"pid":"16","title":"\\u65b0\\u589e","url":"Cms\\/Index\\/setStatus","id":"19"},"36":{"pid":"2","title":"\\u56de\\u6536\\u7ad9","icon":"fa fa-recycle","url":"Cms\\/Index\\/recycle","id":"36"},"37":{"pid":"36","title":"\\u8bbe\\u7f6e\\u72b6\\u6001","url":"Cms\\/Notice\\/setStatus","id":"37"},"38":{"pid":"2","title":"\\u4e3e\\u62a5\\u5217\\u8868","icon":"fa fa-info-circle","url":"Cms\\/Report\\/index","id":"38"},"39":{"pid":"38","title":"\\u7f16\\u8f91","url":"Cms\\/Report\\/edit","id":"39"},"40":{"pid":"38","title":"\\u8bbe\\u7f6e\\u72b6\\u6001","url":"Cms\\/Report\\/setStatus","id":"40"}}', 0, 1471174779, 1483085513, 0, 1),
 (5, 'Video', '视频', '', 'fa fa fa-money', '#F9B440', '视频模块', 'CodeWitty 老司机', '1.2.0', '{"main":[{"title":"\\u89c6\\u9891\\u8ba2\\u5355","icon":"fa fa-tachometer","url":"Video\\/Index\\/orders"}]}', '{"status":"1","taglib":["Video"],"behavior":null}', '{"1":{"pid":"0","title":"\\u89c6\\u9891","icon":"fa fa fa-money","id":"1"},"2":{"pid":"1","title":"\\u89c6\\u9891\\u7ba1\\u7406","icon":"fa fa-folder-open-o","id":"2"},"3":{"pid":"2","title":"\\u89c6\\u9891\\u8bbe\\u7f6e","icon":"fa fa-wrench","url":"Video\\/Index\\/module_config","id":"3"},"4":{"pid":"2","title":"\\u89c6\\u9891\\u5217\\u8868","icon":"fa fa-list","url":"Video\\/Index\\/index","id":"4"},"5":{"pid":"4","title":"\\u65b0\\u589e","url":"Video\\/Index\\/add","id":"5"},"6":{"pid":"5","title":"\\u7f16\\u8f91","url":"Video\\/Index\\/edit","id":"6"},"7":{"pid":"5","title":"\\u8bbe\\u7f6e\\u72b6\\u6001","url":"Video\\/Index\\/setStatus","id":"7"},"8":{"pid":"1","title":"\\u5206\\u7c7b\\u7ba1\\u7406","id":"8"},"9":{"pid":"8","title":"\\u65b0\\u589e\\u5206\\u7c7b","icon":"fa fa-wrench","url":"video\\/category\\/add","id":"9"},"10":{"pid":"8","title":"\\u5206\\u7c7b\\u5217\\u8868","icon":"fa fa-wrench","url":"video\\/category\\/index","id":"10"},"11":{"pid":"2","title":"\\u652f\\u4ed8\\u5217\\u8868","icon":"fa fa-wrench","url":"video\\/index\\/paylogs","id":"11"}}', 0, 1482994156, 1482994156, 0, 1),
-(7, 'Shop', '标题', '', 'fa fa-flask', '#F9B440', '描述', 'yeyuz1', '1.0.0', '{"center":[{"title":"\\u5bfc\\u822a1","icon":"fa fa-flask","url":"Shop\\/Index\\/index"}],"main":[{"title":"\\u5bfc\\u822a2","icon":"fa fa-flask","url":"Shop\\/Index\\/index"}]}', '{"status":"1","group_list":"1:\\u81ea\\u8425\\u5e97\\r\\n2:\\u52a0\\u76df\\u5546","sell_list":"1:\\u6279\\u53d1\\r\\n2:\\u6563\\u53d1","place_list":"1:\\u56fd\\u5185\\r\\n2:\\u56fd\\u5916","taglib":["Shop"],"behavior":null}', '{"1":{"id":"1","pid":"0","title":"\\u4e00\\u5428","url":"","icon":"fa fa-gift"},"2":{"id":"2","pid":"1","title":"\\u7cfb\\u7edf\\u914d\\u7f6e","url":"","icon":"fa fa-folder-open-o"},"3":{"id":"3","pid":"2","title":"\\u57fa\\u672c\\u914d\\u7f6e","url":"shop\\/index\\/module_config","icon":"fa fa-cog"},"4":{"pid":"1","title":"\\u5185\\u5bb9\\u7ba1\\u7406","url":"","icon":"fa fa-folder-open-o","id":"4"},"5":{"id":"5","pid":"4","title":"\\u4ea7\\u54c1\\u5206\\u7c7b","url":"Shop\\/type\\/index","icon":"fa fa-th-list"},"6":{"pid":"5","title":"\\u65b0\\u589e\\u5206\\u7c7b","url":"shop\\/type\\/add","icon":"","id":"6"},"7":{"pid":"5","title":"\\u7f16\\u8f91\\u5206\\u7c7b","url":"shop\\/type\\/edit","icon":"","id":"7"},"8":{"id":"8","pid":"4","title":"\\u4ea7\\u54c1\\u7ba1\\u7406","url":"shop\\/product\\/index","icon":"fa fa-stethoscope"},"9":{"pid":"8","title":"\\u65b0\\u589e\\u4ea7\\u54c1","url":"shop\\/product\\/add","icon":"","id":"9"},"10":{"pid":"8","title":"\\u4ea7\\u54c1\\u7f16\\u8f91","url":"shop\\/product\\/edit","icon":"","id":"10"},"11":{"id":"11","pid":"4","title":"\\u5730\\u533a\\u7ba1\\u7406","url":"shop\\/place\\/index","icon":"fa fa-hdd-o"},"12":{"id":"12","pid":"11","title":"\\u65b0\\u589e\\u5730\\u533a","url":"shop\\/place\\/add","icon":""},"13":{"id":"13","pid":"11","title":"\\u7f16\\u8f91\\u5730\\u533a","url":"shop\\/place\\/edit","icon":""}}', 0, 1483429753, 1483512985, 0, 1);
+(7, 'Shop', '标题', '', 'fa fa-flask', '#F9B440', '描述', 'yeyuz1', '1.0.0', '{"center":[{"title":"\\u5bfc\\u822a1","icon":"fa fa-flask","url":"Shop\\/Index\\/index"}],"main":[{"title":"\\u5bfc\\u822a2","icon":"fa fa-flask","url":"Shop\\/Index\\/index"}]}', '{"status":"1","group_list":"1:\\u81ea\\u8425\\u5e97\\r\\n2:\\u52a0\\u76df\\u5546","sell_list":"1:\\u6279\\u53d1\\r\\n2:\\u6563\\u53d1","place_list":"1:\\u56fd\\u5185\\r\\n2:\\u56fd\\u5916"}', '{"1":{"id":"1","pid":"0","title":"\\u4e00\\u5428","url":"","icon":"fa fa-gift"},"2":{"id":"2","pid":"1","title":"\\u7cfb\\u7edf\\u914d\\u7f6e","url":"","icon":"fa fa-folder-open-o"},"3":{"id":"3","pid":"2","title":"\\u57fa\\u672c\\u914d\\u7f6e","url":"shop\\/index\\/module_config","icon":"fa fa-cog"},"4":{"pid":"1","title":"\\u5185\\u5bb9\\u7ba1\\u7406","url":"","icon":"fa fa-folder-open-o","id":"4"},"5":{"id":"5","pid":"4","title":"\\u4ea7\\u54c1\\u5206\\u7c7b","url":"Shop\\/type\\/index","icon":"fa fa-th-list"},"6":{"pid":"5","title":"\\u65b0\\u589e\\u5206\\u7c7b","url":"shop\\/type\\/add","icon":"","id":"6"},"7":{"pid":"5","title":"\\u7f16\\u8f91\\u5206\\u7c7b","url":"shop\\/type\\/edit","icon":"","id":"7"},"8":{"id":"8","pid":"4","title":"\\u4ea7\\u54c1\\u7ba1\\u7406","url":"shop\\/product\\/index","icon":"fa fa-stethoscope"},"9":{"pid":"8","title":"\\u65b0\\u589e\\u4ea7\\u54c1","url":"shop\\/product\\/add","icon":"","id":"9"},"10":{"pid":"8","title":"\\u4ea7\\u54c1\\u7f16\\u8f91","url":"shop\\/product\\/edit","icon":"","id":"10"},"11":{"id":"11","pid":"4","title":"\\u5730\\u533a\\u7ba1\\u7406","url":"shop\\/place\\/index","icon":"fa fa-hdd-o"},"12":{"id":"12","pid":"11","title":"\\u65b0\\u589e\\u5730\\u533a","url":"shop\\/place\\/add","icon":""},"13":{"id":"13","pid":"11","title":"\\u7f16\\u8f91\\u5730\\u533a","url":"shop\\/place\\/edit","icon":""},"14":{"pid":"1","title":"\\u4ea4\\u6613\\u7ba1\\u7406","url":"","icon":"fa fa-folder-open-o","id":"14"},"15":{"id":"15","pid":"14","title":"\\u8ba2\\u5355\\u5217\\u8868","url":"shop\\/order\\/index","icon":"fa fa-file-o"}}', 0, 1483429753, 1483579206, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -605,7 +605,7 @@ INSERT INTO `oc_cms_index` (`id`, `cid`, `doc_type`, `uid`, `view`, `comment`, `
 (5, 1, 3, 1, 0, 0, 0, 0, 0, 1449839213, 1449839263, 0, 1),
 (6, 1, 3, 1, 0, 0, 0, 0, 0, 1449839213, 1449839263, 0, 1),
 (7, 1, 3, 1, 0, 0, 0, 0, 0, 1449839213, 1449839263, 0, 1),
-(8, 1, 3, 1, 1, 0, 0, 0, 0, 1449839213, 1449839263, 0, 1);
+(8, 1, 3, 1, 2, 0, 0, 0, 0, 1449839213, 1449839263, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -45779,6 +45779,34 @@ INSERT INTO `oc_district` (`id`, `name`, `level`, `upid`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `oc_shop_order`
+--
+
+CREATE TABLE IF NOT EXISTS `oc_shop_order` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '订单ID',
+  `sn` varchar(32) NOT NULL COMMENT '订单编号',
+  `status` tinyint(3) NOT NULL DEFAULT '1' COMMENT '订单状态',
+  `proid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '产品id',
+  `openid` varchar(255) NOT NULL,
+  `price` int(15) NOT NULL DEFAULT '0' COMMENT '订单总价',
+  `token` varchar(50) DEFAULT NULL COMMENT '令牌',
+  `uid` int(10) unsigned NOT NULL COMMENT '订单创建人',
+  `payment` varchar(10) NOT NULL DEFAULT 'none' COMMENT '订单支付方式',
+  `time_end` int(15) unsigned NOT NULL DEFAULT '0' COMMENT '支付时间',
+  `transaction_id` varchar(35) DEFAULT NULL COMMENT '支付流水号',
+  `note` varchar(255) NOT NULL DEFAULT '' COMMENT '备注',
+  `bank_type` varchar(100) DEFAULT NULL COMMENT '付款银行',
+  `total_fee` double(10,2) NOT NULL COMMENT '订单金额',
+  `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '订单创建时间',
+  `update_time` int(11) unsigned NOT NULL DEFAULT '0',
+  `sort` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `sn` (`sn`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `oc_shop_place`
 --
 
@@ -45792,7 +45820,7 @@ CREATE TABLE IF NOT EXISTS `oc_shop_place` (
   `create_time` int(11) unsigned NOT NULL,
   `update_time` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='中国省市区乡镇数据表' AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='中国省市区乡镇数据表' AUTO_INCREMENT=8 ;
 
 --
 -- 转存表中的数据 `oc_shop_place`
@@ -45800,7 +45828,12 @@ CREATE TABLE IF NOT EXISTS `oc_shop_place` (
 
 INSERT INTO `oc_shop_place` (`id`, `title`, `level`, `pid`, `status`, `sort`, `create_time`, `update_time`) VALUES
 (1, '美国', 1, 0, 1, 0, 1483514499, 1483514499),
-(2, '加州', 2, 1, 1, 0, 1483514520, 1483514835);
+(2, '加州', 2, 1, 1, 0, 1483514520, 1483514835),
+(3, '纽约', 2, 1, 1, 0, 1483587065, 1483587065),
+(4, '俄罗斯', 1, 0, 1, 0, 1483587110, 1483587110),
+(5, '斯大林', 2, 4, 1, 0, 1483587131, 1483587131),
+(6, '日本', 1, 0, 1, 0, 1483587194, 1483587194),
+(7, '东京', 2, 6, 1, 0, 1483587209, 1483587209);
 
 -- --------------------------------------------------------
 
@@ -45853,7 +45886,7 @@ CREATE TABLE IF NOT EXISTS `oc_shop_type` (
   `sort` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
   `status` tinyint(3) NOT NULL DEFAULT '0' COMMENT '状态',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='前台产品分类' AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='前台产品分类' AUTO_INCREMENT=15 ;
 
 --
 -- 转存表中的数据 `oc_shop_type`
@@ -45861,7 +45894,19 @@ CREATE TABLE IF NOT EXISTS `oc_shop_type` (
 
 INSERT INTO `oc_shop_type` (`id`, `group`, `pid`, `title`, `value`, `target`, `create_time`, `update_time`, `sort`, `status`) VALUES
 (1, 1, 0, '猪肉类', NULL, '', 1483434736, 1483434736, 0, 1),
-(2, 1, 1, '山地猪', NULL, '', 1483434848, 1483434848, 0, 1);
+(2, 1, 1, '排骨', NULL, '', 1483434848, 1483586814, 0, 1),
+(3, 1, 1, '五花肉', NULL, '', 1483586844, 1483586844, 0, 1),
+(4, 1, 1, '猪头肉', NULL, '', 1483586860, 1483586860, 0, 1),
+(5, 1, 1, '猪心', NULL, '', 1483586871, 1483586871, 0, 1),
+(6, 1, 0, '羊肉类', NULL, '', 1483586885, 1483586885, 0, 1),
+(7, 1, 6, '羊排', NULL, '', 1483586906, 1483586906, 0, 1),
+(8, 1, 6, '腊羊肉', NULL, '', 1483586918, 1483586918, 0, 1),
+(9, 1, 6, '羊腩', NULL, '', 1483586932, 1483586932, 0, 1),
+(10, 1, 6, '羊肉片', NULL, '', 1483586946, 1483586946, 0, 1),
+(11, 1, 0, '牛肉类', NULL, '', 1483586995, 1483586995, 0, 1),
+(12, 1, 11, '牛腩', NULL, '', 1483587014, 1483587014, 0, 1),
+(13, 1, 11, '牛肚', NULL, '', 1483587024, 1483587024, 0, 1),
+(14, 1, 11, '牛肺', NULL, '', 1483587041, 1483587041, 0, 1);
 
 -- --------------------------------------------------------
 

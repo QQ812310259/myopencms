@@ -198,11 +198,27 @@ return array (
     ),
     13 => 
     array (
-      'id' => '13',
+      'id' => 13,
       'pid' => '11',
       'title' => '编辑地区',
       'url' => 'shop/place/edit',
       'icon' => '',
+    ),
+    14 => 
+    array (
+      'pid' => '1',
+      'title' => '交易管理',
+      'url' => '',
+      'icon' => 'fa fa-folder-open-o',
+      'id' => 14,
+    ),
+    15 => 
+    array (
+      'id' => '15',
+      'pid' => '14',
+      'title' => '订单列表',
+      'url' => 'shop/order/index',
+      'icon' => 'fa fa-file-o',
     ),
   ),
 )

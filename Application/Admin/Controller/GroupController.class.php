@@ -131,7 +131,6 @@ class GroupController extends AdminController {
             // 获取部门信息
             $info = D('Group')->find($id);
             $info['menu_auth'] = json_decode($info['menu_auth'], true);
-
             // 获取现有部门
             $map['status'] = array('egt', 0);
             $all_group = select_list_as_tree('Group', $map, '顶级部门');

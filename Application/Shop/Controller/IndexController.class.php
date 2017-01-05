@@ -14,7 +14,6 @@ use Home\Controller\HomeController;
 class IndexController extends HomeController {
     /**
      * 默认方法
-     *
      */
     public function index() {
         $this->assign('meta_title', "前台模块");
@@ -33,6 +32,16 @@ class IndexController extends HomeController {
         $this->assign('meta_title', "Shop列表");
         $this->display();
     }
+    
+    /**
+     * 登录
+     *
+     */
+    public function login() {
+    	$this->assign('meta_title', "Shop列表");
+    	$this->display();
+    }
+    
 
     /**
      * 详情

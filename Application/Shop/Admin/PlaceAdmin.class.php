@@ -17,7 +17,7 @@ class PlaceAdmin extends AdminController {
 	 * 默认方法
 	 *
 	 */
-	public function index() {
+	public function index($group=2) {
 		//搜索
         $keyword = I('keyword', '', 'string');
         $condition = array('like','%'.$keyword.'%');
@@ -40,11 +40,13 @@ class PlaceAdmin extends AdminController {
 //         P($data_list);exit;
         
         // 设置Tab导航数据列表
-//         $category_group_list = D('place')->group_list();  // 获取分类分组
-//         foreach ($category_group_list as $key => $val) {
-//         	$tab_list[$key]['title'] = $val;
-//         	$tab_list[$key]['href']  = U('index', array('group' => $key));
-//         }
+        $category_group_list = D('place')->place_list();  // 获取分类分组
+        foreach ($category_group_list as $key => $val) {
+        	$tab_list[$key]['title'] = $val;
+        	$tab_list[$key]['href']  = U('index', array('group' => $key));
+        }
+        unset($tab_list[1]);
+//         P($tab_list);exit;
         
         // 使用Builder快速建立列表页面。
         $builder = new \Common\Builder\ListBuilder();
@@ -54,6 +56,7 @@ class PlaceAdmin extends AdminController {
                 ->addTopButton('forbid')  // 添加禁用按钮
                 ->addTopButton('delete')  // 添加删除按钮
                 ->setSearch('请输入名称', U('index'))
+                ->setTabNav($tab_list, $group)  // 设置页面Tab导航
                 ->addTableColumn('id', 'ID')
                 ->addTableColumn('title_show', '名称')
                 ->addTableColumn('status', '状态', 'status')
@@ -92,7 +95,6 @@ class PlaceAdmin extends AdminController {
                     ->addFormItem('title', 'text', '地区名称', '前台显示地区名称')
                     ->addFormItem('level', 'num', '层级关系','如 "美国" 请填 1 "美国加州" 请填 2')
                     ->addFormItem('sort', 'num', '排序', '用于显示的顺序')
-                    ->setAjaxSubmit(false)
                     ->display();
         }
     }
@@ -127,7 +129,6 @@ class PlaceAdmin extends AdminController {
             ->addFormItem('level', 'num', '层级关系','如 "美国" 请填 1 "美国加州" 请填 2')
             ->addFormItem('sort', 'num', '排序', '用于显示的顺序')
             ->setFormData($info)
-            ->setAjaxSubmit(false)
             ->display();
         }
     }
