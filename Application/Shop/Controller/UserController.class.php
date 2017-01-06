@@ -6,12 +6,11 @@
  */
 
 namespace Shop\Controller;
-use Home\Controller\HomeController;
 /**
  * 默认控制器
  *
  */
-class UserController extends HomeController {
+class UserController extends BaseController {
     /**
      * 默认方法
      */

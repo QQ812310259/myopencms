@@ -6,17 +6,16 @@
  */
 
 namespace Shop\Controller;
-use Home\Controller\HomeController;
 /**
  * 默认控制器
  *
  */
-class IndexController extends HomeController {
+class IndexController extends BaseController {
     /**
      * 默认方法
      */
     public function index() {
-        $this->assign('meta_title', "前台模块");
+        $this->assign('meta_title', "一吨网");
         $this->display();
     }
 
@@ -24,12 +23,34 @@ class IndexController extends HomeController {
      * 列表
      *
      */
-    public function lists($cid) {
-        $map['cid']    = $cid;
+    public function lists() {
+    	//搜索
+    	$keyword = I('keyword', '', 'string');
+    	$condition = array('like','%'.$keyword.'%');
+    	$map['id|sn'] = array(
+    			$condition,
+    			'_multi'=>true
+    	);
+    	
+    	// 获取所有分类
+        $map['group']    = I('group');
         $map['status'] = 1;
-        $list = D('Index')->where($map)->select();
+	    switch ($group) {
+	    case 1:
+	        $meta_title	=	'自营店';
+	        break;
+	    case 2:
+	        $meta_title	=	'加盟店';
+	        break;
+        default:
+        	$meta_title	=	'自营店';
+        	break;
+		}
+        $list = D('product')->where($map)->select();
+        D('product')->get_list_order($list);
+//         P($list);exit;
         $this->assign('list', $list );
-        $this->assign('meta_title', "Shop列表");
+        $this->assign('meta_title', $meta_title);
         $this->display();
     }
     

@@ -103,6 +103,43 @@ class ChinaCityController extends AddonController{
 
 
 	}
+	/* 省级列表 */
+	public function getprolist(){
+	
+		if(IS_AJAX){
+			$upid = I('post.upid');
+			$list = M('district')->where(array('upid'=>0))->select();
+			$data = '';
+			foreach($list as $val){
+				$data .= "<option value='".$val['id']."'";
+				if($upid == $val['id']) $data.="selected=selected >";
+				$data .= $val['name'];
+				$data .= "</option>";
+			};
+	
+			$this->ajaxReturn($data);
+		}
+	
+	}
+	/* 城市列表 */
+	public function getclist(){
+	
+		if(IS_AJAX){
+			$upid = I('post.upid');
+			$list = M('district')->where(array('upid'=>0))->select();
+			$data = '';
+			foreach($list as $val){
+				$data .= "<option value='".$val['id']."'";
+				if($upid == $val['id']) $data.="selected=selected >";
+				$data .= $val['name'];
+				$data .= "</option>";
+			};
+	
+			$this->ajaxReturn($data);
+		}
+	
+	}
+	
 	public function getcityList($city_id){
 		$city_info	=	M('district')->where(array('id'=>$city_id))->find();
 		if($city_info['upid'] == 0){

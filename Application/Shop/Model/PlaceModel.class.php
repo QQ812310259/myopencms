@@ -59,7 +59,7 @@ class PlaceModel extends Model {
      * @author jry <598821125@qq.com>
      */
     public function link_type($id) {
-        $group_list	=	parse_attr(C('shop_config.group_list'));
+        $group_list	=	parse_attr(C('shop_config.place_list'));
     	return $id ? $group_list[$id] : $group_list;
     }
     
@@ -69,6 +69,29 @@ class PlaceModel extends Model {
      */
     public function get_type_name($id) {
     	return $this->getFieldByid($id,'title');
+    }
+    
+    //获取中国省份信息
+    public function getplace() {
+    	if (IS_AJAX) {
+    		$pid = I('pid');  //默认的省份id
+    		$map['status'] = array('egt', '0');
+    
+    		$list = $this->where($map)->order('id ASC')->select();
+    		$data = "<option value =''>选择国家</option>";
+    		foreach ($list as $k => $vo) {
+    			$data .= "<option ";
+    			if ($pid == $vo['id']) {
+    				$data .= " selected ";
+    			}
+    			$data .= " value ='" . $vo['id'] . "'>";
+    			if($vo['pid'] != 0){
+    				$data .= '&nbsp;&nbsp;|-';
+    			}
+    			$data .= $vo['title'] . "</option>";
+    		}
+    		return $data;
+    	}
     }
 
     /**

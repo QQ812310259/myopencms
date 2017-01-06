@@ -62,6 +62,10 @@ class TypeModel extends Model {
         $group_list	=	parse_attr(C('shop_config.group_list'));
     	return $id ? $group_list[$id] : $group_list;
     }
+    public function sell_type($id) {
+    	$group_list	=	parse_attr(C('shop_config.sell_list'));
+    	return $id ? $group_list[$id] : $group_list;
+    }
     
     /**
      * 导航类型
@@ -69,6 +73,50 @@ class TypeModel extends Model {
      */
     public function get_type_name($id) {
     	return $this->getFieldByid($id,'title');
+    }
+    
+    
+    //获取中国省份信息
+    public function gettype() {
+    	if (IS_AJAX) {
+    		$pid = I('pid');
+    		$map['pid'] = 0;
+    
+    		$list = $this->where($map)->order('id ASC')->select();
+    		$data = "<option value =''>选择类型</option>";
+    		foreach ($list as $k => $vo) {
+    			$data .= "<option ";
+    			if ($pid == $vo['id']) {
+    				$data .= " selected ";
+    			}
+    			$data .= " value ='" . $vo['id'] . "'>" . $vo['title'] . "</option>";
+    		}
+    		return $data;
+    	}
+    }
+    public function gettypes() {
+    	if (IS_AJAX) {
+    		$cid = I('cid');  //默认的城市id
+    		$pid = I('pid');  //传过来的省份id
+    		if($pid	==	0){
+    			return $data = "<option value =''>选择分类</option>";
+    		}else{
+    			$map['pid'] = $pid;
+    		}
+    		
+    
+    		$list = $this->where($map)->order('id ASC')->select();
+    
+    		$data = "<option value =''>选择分类</option>";
+    		foreach ($list as $k => $vo) {
+    			$data .= "<option ";
+    			if ($cid == $vo['id']) {
+    				$data .= " selected ";
+    			}
+    			$data .= " value ='" . $vo['id'] . "'>" . $vo['title'] . "</option>";
+    		}
+    		return $data;
+    	}
     }
 
     /**

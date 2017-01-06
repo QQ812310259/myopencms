@@ -23,7 +23,6 @@ class HomeController extends CommonController {
         if (!C('TOGGLE_WEB_SITE')) {
             $this->error('站点已经关闭，请稍后访问~');
         }
-
         // 监听行为扩展
         \Think\Hook::listen('corethink_behavior');
     }

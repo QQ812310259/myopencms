@@ -37,6 +37,79 @@ class ProductModel extends Model {
         array('update_time', 'time', self::MODEL_BOTH, 'function'),
         array('status', '1', self::MODEL_INSERT),
     );
+    
+    /**
+     * 查找后置操作
+     * @author jry <598821125@qq.com>
+     */
+    protected function _after_find(&$result, $options) {
+//     	P($result);exit;
+    }
+    
+    /**
+     * 查找后置操作
+     * @author jry <598821125@qq.com>
+     */
+    protected function _after_select(&$result, $options) {
+    	foreach($result as &$record){
+    		$this->_after_find($record, $options);
+    	}
+    }
+    /**
+     * 整理数据
+     */
+    public function get_list_order(&$array){
+    	foreach($array as &$record){
+    		$this->_get_list_data($record);
+    	}
+    }
+/**
+     * 查找后置操作
+     * @author jry <598821125@qq.com>
+     */
+    protected function _get_list_data(&$result) {
+//     	P($result);exit;
+    	if ($result['pic']) {
+    		$result['pic_url'] = get_cover($result['pic'], 'default');
+    	}
+    	if ($result['type']) {
+    		$result['type'] = D('type')->get_type_name($result['type']);
+    	}
+    	if ($result['group']) {
+    		$result['group'] = D('type')->link_type($result['group']);
+    	}
+    	/* 产地 */
+    	if ($result['origin']) {
+	    	switch ($result['placetype']) {
+		    case 1:
+		    	/* 国内 */
+		        $result['origin'] = M('district')->getFieldbyid($result['origin'],'name');
+		        break;
+		    case 2:
+		        $result['origin'] = D('place')->get_type_name($result['origin']);
+		        break;
+			}
+    	}
+    	if ($result['place']) {
+    		$result['place'] = M('district')->getFieldbyid($result['place'],'name');
+    	}
+    	if ($result['placetype']) {
+    		$result['placetype'] = D('place')->link_type($result['placetype']);
+    	}
+    	if ($result['sell']) {
+    		$result['sell'] = D('type')->sell_type($result['sell']);
+    	}
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     
 }
