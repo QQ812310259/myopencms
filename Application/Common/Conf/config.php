@@ -54,7 +54,7 @@ $_config = array(
     'URL_CASE_INSENSITIVE' => true,  // 不区分大小写
 
     // 应用配置
-    'DEFAULT_MODULE'     => 'Home',
+    'DEFAULT_MODULE'     => 'Shop',
     'MODULE_DENY_LIST'   => array('Common'),
     'MODULE_ALLOW_LIST'  => array('Home','Install'),
 

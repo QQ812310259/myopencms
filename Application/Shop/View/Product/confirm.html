@@ -1,0 +1,154 @@
+<include file="Publics/header" /><body>
+
+
+	<body>
+		<!--header star-->
+		<header class="mui-bar mui-bar-nav" id="header">
+			<a class="btn" href="javascript:history.go(-1)">
+	            <i class="iconfont icon-fanhui"></i>
+	        </a>
+	        <div class="top-sch-box top-sch-boxtwo flex-col">
+	                      确认订单
+	        </div>
+	    </header>
+	    <!--header end-->
+		
+	    <form action="{:U('product/need')}" method="post" >
+		<input type="hidden" name="id" value="{$info.id}">
+		
+		
+	    <div class="warp warptwo clearfloat">
+	    	<div class="confirm clearfloat">
+	    		<div class="add clearfloat box-s">
+	    			<a href="#">
+		    			<div class="left clearfloat fl">
+		    				<i class="iconfont icon-dizhi1"></i>
+		    			</div>
+		    			<div class="middle clearfloat fl">
+		    				<p class="tit">
+		    					收货人：王小王&nbsp;&nbsp;&nbsp;&nbsp;15806976589
+		    				</p>
+		    				<p class="fu-tit over2">
+		    					收货地址：安徽省合肥市高新区长江西路拓基城市广场金座A2002
+		    				</p>
+		    			</div>
+		    			<div class="left clearfloat fr">
+		    				<i class="iconfont icon-jiantou1"></i>
+		    			</div>
+	    			</a>
+	    		</div>
+	    		<div class="lie clearfloat">
+					<a href="detail.html">
+						<div class="tu clearfloat fl">
+							<img src="{$info.pic_url}"/>
+						</div>
+					</a>
+					<div class="right clearfloat fl">
+						<a href="detail.html">
+							<p>厂号:{$info.sn}</p>
+							<p>价格：{$info.price}</p>
+							<p>产地:{$info.origin}</p>
+						</a>
+						<div class="xia clearfloat">
+							<a href="detail.html">
+								<p class="fu-tit">冷库地:{$info.place}</p>
+							</a>
+							<!-- <span class="fr db">×1</span> -->
+						</div>
+					</div>
+				</div>
+				<style type="text/css">
+					input[type=text]{height: 0px;    width: 110%;  }
+					.poU{ float: left; }
+				</style>
+				<div class="gmshu clearfloat box-s fl">
+					<div class="gcontent clearfloat">
+						<p class="fl">下单数/柜</p>
+			     		<div class="you clearfloat fr">
+			     			<ul>
+			     			<li><input type="text" name="number" value="{$v.number}" placeholder="2/柜" class="poU"></li>
+			     			</ul>
+			     		</div>
+					</div>		     		
+		     	</div>
+		     	<div class="gmshu gmshutwo clearfloat box-s fl">
+					<div class="gcontent clearfloat">
+						<p class="fl">配送方式</p>
+			     		<div class="you clearfloat fr">
+			     			<span>快递 免邮</span>
+			     			<i class="iconfont icon-jiantou1"></i>
+			     		</div>
+					</div>		     		
+		     	</div>
+		     	 	<div class="gmshu gmshutwo clearfloat box-s fl">
+					<div class="gcontent clearfloat">
+						<p class="fl">是否批发？</p>
+			     		<div class="you clearfloat fr">
+			     			<div class="xuan clearfloat">
+			     				<div class="radiotwo" > 
+								    <label>
+								        <input type="radio" id="sell" name="sell" value="1" />
+								        <div class="option"></div>
+								        <span class="opt-text">批发</span>
+								    </label>
+								</div>
+			     			</div>
+		    				<div class="xuan clearfloat">
+			     				<div class="radiotwo" > 
+								    <label>
+								        <input type="radio"  id="sell"  name="sell" value="2" />
+								        <div class="option"></div>
+								        <span class="opt-text">散发</span>
+								    </label>
+								</div>
+			     			</div>
+			     		</div>
+					</div>		     		
+		     	</div>
+				<script type="text/javascript">
+	  	 		  $(function(){
+				  	$(".gcontent input[value="+ {$v.sell} +"]").attr("checked",true);
+				  });
+	 		    </script>
+		     	<div class="gmshu gmshuthree clearfloat box-s fl">
+					<div class="gcontent clearfloat">
+						<p class="fl">买家留言</p>
+			     		<div class="you clearfloat fl">
+			     			<input type="text" name="note" id="" value="" class="text" placeholder="选填 对本次交易需求给商家留言" />
+			     		</div>
+					</div>		     		
+		     	</div>
+		     	<div class="gmshu clearfloat box-s fl">
+					<p class="fr">共1件商品   合计<samp>￥2998</samp></p>	     		
+		     	</div>
+	    	</div>
+	    </div>	    
+	    
+		<!--settlement star-->
+	    <div class="settlement clearfloat">
+	    	<div class="zuo clearfloat fl box-s">
+	    		共<span>1</span>件  总金额：<span>￥2998</span>
+	    	</div>
+	    	<a href="#" class="fl db">
+	    		<input type="submit" value="提交订单"/>
+	    	</a>
+	    </div>
+	    <!--settlement end-->
+		
+	    
+		</form>
+		<!--footer star-->
+		<include file="Publics/footer" />
+		<!--footer end-->
+		
+		
+	</body>
+	<script type="text/javascript" src="__SHOP_JS__/jquery-1.8.3.min.js" ></script>
+	<script src="__SHOP_JS__/mui.min.js"></script>
+	<script src="__SHOP_JS__/others.js"></script>
+	<script type="text/javascript" src="__SHOP_JS__/hmt.js" ></script>
+	<script src="__SHOP_SLICK__/slick.js" type="text/javascript" ></script>
+	<!--插件-->
+	<link rel="stylesheet" href="__SHOP_CSS__/swiper.min.css">
+	<script src="__SHOP_JS__/swiper.jquery.min.js"></script>
+</html>

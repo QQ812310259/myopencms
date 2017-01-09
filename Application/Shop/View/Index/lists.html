@@ -119,10 +119,16 @@
 				self.location="{:U('lists')}"+'&pid='+pid+'&cid='+cid+'&group='+group+'&aid='+aid+'&aaid='+aaid+'&placeid='+placeid; 
 
 		});
+		var id  = 	$('select[name="placetype"] option:selected').val();
+		if(id == 2){
+				$('#place').removeAttr("disabled");
+		}
 		$('#placetype').change(function(){
 			id = $(this).val();
 			if(id == 2){
 				$('#place').removeAttr("disabled");
+			}else{
+				$('#place').attr("disabled",'disabled');
 			}
 
 		});
@@ -144,10 +150,10 @@
          </div>
 
               <div>
-         	<select class="posa" id="placetype">
+         	<select class="posa" id="placetype" name="placetype">
 			  <option value="volvo">选择产地</option>
 			  <option value="1">国内</option>
-			  <option value="2">国外</option>
+			  <option value="2" selected="selected">国外</option>
 			</select>
          </div>
 
@@ -180,24 +186,20 @@
 </style>
 
 				<div class="bottom clearfloat">
+				
+					<volist name="list" id="vo">
 					<div class="lie clearfloat">
-						<!--<a href="detail.html">
-							 <div class="tu clearfloat fl">
-								<img src="upload/20.jpg"/>
-							</div> 
-						</a>-->
 						<div class="right clearfloat fl">
-							<a href="detail.html">
-								<p class="tit">恒都 羔羊后腿 2000g/袋</p>
+							<a href="{:U('product/index',array('id'=>$vo[id]))}">
+								<p class="tit">{$vo.title}</p>
 							</a>
 							<div class="xia clearfloat">
-								<a href="detail.html">
+								<a href="{:U('product/index',array('id'=>$vo[id]))}">
 									<p class="jifen fl over">-18℃以下冷冻储存，不膻不腻，足不出户，享受纯正好羊肉，烧烤必备。</p>
 								</a>
 								<div style=" clear: both; " ></div>
 								<ul class="poi">
-									<li><a href="detail.html">加入购物车</a></li>
-									<li><a href="detail.html">立即购买</a></li>
+									<li><a href="{:U('product/index',array('id'=>$vo[id]))}">立即购买</a></li>
 								</ul>
 								
 
@@ -207,98 +209,10 @@
 							</div>
 						</div>
 					</div>
-					<div class="lie clearfloat">
-						<!-- <a href="detail.html">
-							<div class="tu clearfloat fl">
-								<img src="upload/20.jpg"/>
-							</div>
-						</a> -->
-						<div class="right clearfloat fl">
-							<a href="detail.html">
-								<p class="tit">玺宴 澳大利亚 眼肉牛排 草饲</p>
-							</a>
-							<div class="xia clearfloat">
-								<a href="detail.html">
-									<p class="jifen fl over">-18℃以下冷冻储存，不膻不腻，足不出户，享受纯正好羊肉，烧烤必备。</p>
-								</a>
-								<div style=" clear: both; " ></div>
-								<ul class="poi">
-									<li><a href="detail.html">加入购物车</a></li>
-									<li><a href="detail.html">立即购买</a></li>
-								</ul>
-								<span class="fr db"><img src="__SHOP_IMG__/jia.png"/></span>
-							</div>
-						</div>
-					</div>
-					<div class="lie clearfloat">
-						<!-- <a href="detail.html">
-							<div class="tu clearfloat fl">
-								<img src="upload/20.jpg"/>
-							</div>
-						</a> -->
-						<div class="right clearfloat fl">
-							<a href="detail.html">
-								<p class="tit">熊氏牧场 法国猪肋排段 1000g/袋</p>
-							</a>
-							<div class="xia clearfloat">
-								<a href="detail.html">
-									<p class="jifen fl over">-18℃以下冷冻储存，不膻不腻，足不出户，享受纯正好羊肉，烧烤必备。</p>
-								</a>
-								<div style=" clear: both; " ></div>
-								<ul class="poi">
-									<li><a href="detail.html">加入购物车</a></li>
-									<li><a href="detail.html">立即购买</a></li>
-								</ul>
-								<span class="fr db"><img src="__SHOP_IMG__/jia.png"/></span>
-							</div>
-						</div>
-					</div>
-					<div class="lie clearfloat">
-						<!-- <a href="detail.html">
-							<div class="tu clearfloat fl">
-								<img src="upload/20.jpg"/>
-							</div>
-						</a> -->
-						<div class="right clearfloat fl">
-							<a href="detail.html">
-								<p class="tit">五合昆域 羊后腿 有机放养 1.5kg/袋</p>
-							</a>
-							<div class="xia clearfloat">
-								<a href="detail.html">
-									<p class="jifen fl over">-18℃以下冷冻储存，不膻不腻，足不出户，享受纯正好羊肉，烧烤必备。</p>
-								</a>
-								<div style=" clear: both; " ></div>
-								<ul class="poi">
-									<li><a href="detail.html">加入购物车</a></li>
-									<li><a href="detail.html">立即购买</a></li>
-								</ul>
-								<span class="fr db"><img src="__SHOP_IMG__/jia.png"/></span>
-							</div>
-						</div>
-					</div>
-					<div class="lie clearfloat">
-						<!-- <a href="detail.html">
-							<div class="tu clearfloat fl">
-								<img src="upload/20.jpg"/>
-							</div>
-						</a> -->
-						<div class="right clearfloat fl">
-							<a href="detail.html">
-								<p class="tit">精气神 长白山山黑猪 前肩梅花肉</p>
-							</a>
-							<div class="xia clearfloat">
-								<a href="detail.html">
-									<p class="jifen fl over">-18℃以下冷冻储存，不膻不腻，足不出户，享受纯正好羊肉，烧烤必备。</p>
-								</a>
-								<div style=" clear: both; " ></div>
-								<ul class="poi">
-									<li><a href="detail.html">加入购物车</a></li>
-									<li><a href="detail.html">立即购买</a></li>
-								</ul>
-								<span class="fr db"><img src="__SHOP_IMG__/jia.png"/></span>
-							</div>
-						</div>
-					</div>
+					
+					</volist>
+					
+					
 				</div>
 			</div>
 		</div>

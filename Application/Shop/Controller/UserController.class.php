@@ -11,6 +11,20 @@ namespace Shop\Controller;
  *
  */
 class UserController extends BaseController {
+	/**
+	 * 初始化方法
+	 * @author jry <598821125@qq.com>
+	 */
+	protected function _initialize() {
+		//用户登录检测
+        $uid = is_login();
+        if ($uid) {
+            return $uid;
+        } else {
+            $this->error('请先登录系统', U('Shop/Index/login'));
+        }
+		parent::_initialize();
+	}
     /**
      * 默认方法
      */
@@ -32,14 +46,7 @@ class UserController extends BaseController {
         $this->display();
     }
     
-    /**
-     * 登录
-     *
-     */
-    public function login() {
-    	$this->assign('meta_title', "Shop列表");
-    	$this->display();
-    }
+    
     
 
     /**

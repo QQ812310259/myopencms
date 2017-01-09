@@ -1,5 +1,5 @@
-<include file="Publics/header" />
-	<body>
+
+	<include file="Publics/header" /><body>
 		<div class="login clearfloat box-s">
 			<h3>会员登录</h3>
 			<div class="list clearfloat">
@@ -51,7 +51,7 @@
 		    			</div>
 					</li>
 					<li class="fr">
-						<a href="verification.html">找回密码？</a>
+						<a href="{:U('resetPassword')}">找回密码？</a>
 					</li>
 				</ul>
 			</div>
@@ -59,7 +59,7 @@
 				<a href="xuzhi.html">
 					登录
 				</a>
-				<a href="register.html" class="btn">
+				<a href="{:U('register')}" class="btn">
 					<span class="opa5"></span>
 					<samp>注册</samp>
 				</a>

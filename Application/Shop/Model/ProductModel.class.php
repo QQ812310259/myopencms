@@ -67,7 +67,7 @@ class ProductModel extends Model {
      * 查找后置操作
      * @author jry <598821125@qq.com>
      */
-    protected function _get_list_data(&$result) {
+    public function _get_list_data(&$result) {
 //     	P($result);exit;
     	if ($result['pic']) {
     		$result['pic_url'] = get_cover($result['pic'], 'default');
