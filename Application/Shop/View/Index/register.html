@@ -9,6 +9,10 @@ img.verifyimg.reload-verify {
 		<div class="login clearfloat box-s">
 			<h3>会员注册</h3>
 			<div class="list clearfloat">
+			 <form action="{:U('User/User/register', null, true, true)}" method="post">
+			<input type="hidden" name="reg_type" value="username">
+			<input type="hidden" name="user_type" value="1">
+			<input type="hidden" name="gotopage" value="{$_SERVER['HTTP_REFERER']}" />
 				<ul>
 					<li class="ra3">
 						<p class="fl clearfloat">
@@ -17,7 +21,7 @@ img.verifyimg.reload-verify {
 						</p>
 						<div class="nr clearfloat fl">
 							<span class="opa3"></span>
-							<input type="text" name="" id="" value="" placeholder="用户姓名" />
+							<input type="text" name="username" id="" value="" placeholder="帐号名" />
 						</div>
 					</li>
 					<li class="ra3">
@@ -27,37 +31,7 @@ img.verifyimg.reload-verify {
 						</p>
 						<div class="nr clearfloat fl">
 							<span class="opa3"></span>
-							<input type="text" name="" id="" value="" placeholder="登录密码" />
-						</div>
-					</li>
-					<li class="ra3">
-						<p class="fl clearfloat">
-							<span class="opa5"></span>
-							<i class="iconfont icon-shouji"></i>
-						</p>
-						<div class="nr clearfloat fl">
-							<span class="opa3"></span>
-							<input type="text" name="" id="" value="" placeholder="联系电话" />
-						</div>
-					</li>
-					<li class="ra3">
-						<p class="fl clearfloat">
-							<span class="opa5"></span>
-							<i class="iconfont icon-shenfenzheng"></i>
-						</p>
-						<div class="nr clearfloat fl">
-							<span class="opa3"></span>
-							<input type="text" name="" id="" value="" placeholder="身份证号" />
-						</div>
-					</li>
-					<li class="ra3">
-						<p class="fl clearfloat">
-							<span class="opa5"></span>
-							<i class="iconfont icon-tuijianrenyaoqing"></i>
-						</p>
-						<div class="nr clearfloat fl">
-							<span class="opa3"></span>
-							<input type="text" name="" id="" value="" placeholder="推荐人账户" />
+							<input type="password" name="password" id="" value="" placeholder="登录密码" />
 						</div>
 					</li>
 					<li class="ra3">
@@ -67,24 +41,25 @@ img.verifyimg.reload-verify {
 						</p>
 						<div class="nr nrtwo clearfloat fl">
 							<span class="opa3"></span>
-							<input type="text" name="" id="" value="" placeholder="验证码" />
+							<input type="text" name="verify" id="" value="" placeholder="验证码" />
 							<samp class="db fr"><img class="verifyimg reload-verify" alt="验证码" src="{:U('User/User/verify')}" title="点击刷新"></samp>
 						</div>
 					</li>
 				</ul>
 			</div>			
 			<div class="login-btn">
-				<a href="{:U('register')}">
-					注册
+				<a href="#">
+					<input type="submit" value="注册"  />
 				</a>
 			</div>
 			<div class="mima mimaone clearfloat">
 				<ul>
 					<li class="fr">
-						<a href="login.html">立即登录</a>
+						<a href="{:U('login')}">立即登录</a>
 					</li>
 				</ul>
 			</div>
+			</form>
 		</div>
 	</body>
 </html>

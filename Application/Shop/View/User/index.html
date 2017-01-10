@@ -17,8 +17,8 @@
 	    			<img src="__SHOP_IMG__/touxiang.png"/>
 	    		</div>
 	    		<div class="content clearfloat fl">
-	    			<p class="hname">王小二</p>
-	    			<p class="htel">13035059866</p>
+	    			<p class="hname">{$v.username}</p>
+	    			<p class="htel">{$v.mobile}</p>
 	    			<p class="hpthy">普通会员</p>
 	    		</div>
 	    		<a href="##" class="btn db clearfloat fr ra3">签到</a>
@@ -27,20 +27,8 @@
 	    	<div class="cashlist clearfloat">
 	    		<ul>
 	    			<li class="box-s">
-	    				<a href="#account.html">
-	    					<p class="fl">现金账户管理</p>
-	    					<i class="iconfont icon-jiantou1 fr"></i>
-	    				</a>
-	    			</li>
-	    			<li class="box-s">
 	    				<a href="#recharge.html">
 	    					<p class="fl">现金充值</p>
-	    					<i class="iconfont icon-jiantou1 fr"></i>
-	    				</a>
-	    			</li>
-	    			<li class="box-s">
-	    				<a href="#zhuanzhang.html">
-	    					<p class="fl">现金转账</p>
 	    					<i class="iconfont icon-jiantou1 fr"></i>
 	    				</a>
 	    			</li>
@@ -51,18 +39,6 @@
 	    			<li class="box-s">
 	    				<a href="#jfguanli.html">
 	    					<p class="fl">可用积分管理</p>
-	    					<i class="iconfont icon-jiantou1 fr"></i>
-	    				</a>
-	    			</li>
-	    			<li class="box-s">
-	    				<a href="#jfguanli.html">
-	    					<p class="fl">待用积分管理</p>
-	    					<i class="iconfont icon-jiantou1 fr"></i>
-	    				</a>
-	    			</li>
-	    			<li class="box-s">
-	    				<a href="#jfguanli.html">
-	    					<p class="fl">业务奖励积分</p>
 	    					<i class="iconfont icon-jiantou1 fr"></i>
 	    				</a>
 	    			</li>
@@ -100,25 +76,25 @@
 	    		<ul>
 	    			<li class="box-s">
 	    				<a href="#sqlianmeng.html">
-	    					<p class="fl">申请联盟商家</p>
+	    					<p class="fl">申请加盟商</p>
 	    					<i class="iconfont icon-jiantou1 fr"></i>
 	    				</a>
 	    			</li>
 	    			<li class="box-s">
 	    				<a href="#sqyunying.html">
-	    					<p class="fl">申请运营中心</p>
+	    					<p class="fl">申请自营店</p>
 	    					<i class="iconfont icon-jiantou1 fr"></i>
 	    				</a>
 	    			</li>
 	    			<li class="box-s">
-	    				<a href="#order.html">
+	    				<a href="{:U('shop/user/order')}">
 	    					<p class="fl">消费订单管理</p>
 	    					<i class="iconfont icon-jiantou1 fr"></i>
 	    				</a>
 	    			</li>
 	    			<li class="box-s">
 	    				<a href="#friend.html">
-	    					<p class="fl">我的好友</p>
+	    					<p class="fl">我的收藏</p>
 	    					<i class="iconfont icon-jiantou1 fr"></i>
 	    				</a>
 	    			</li>
@@ -130,13 +106,13 @@
 	    			</li>
 	    			<li class="box-s">
 	    				<a href="#xiugainame.html">
-	    					<p class="fl">修改姓名</p>
+	    					<p class="fl">修改个人资料</p>
 	    					<i class="iconfont icon-jiantou1 fr"></i>
 	    				</a>
 	    			</li>
 	    		</ul>
 	    	</div>
-	    	<a href="##" class="center-btn db ra3">退出登录</a>
+	    	<a href="{:U('user/user/logout')}" class="center-btn db ra3">退出登录</a>
 	    </div>
 	    
 		<!--footer star-->

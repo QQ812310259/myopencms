@@ -7,16 +7,44 @@
 			<a class="btn slide-menu" href="#">
 	            <i class="iconfont " style="color: #ff0000">一吨网</i>
 	        </a>
+<style>
+.top-sch-box .sch-txt {
+    width: 100%;
+    padding: 0 10px;
+    position: relative;
+    border: none;
+    height: .9rem;
+    font-size: .4rem;
+    background-color: #e6e6e6;
+}
+.top-sch-box .fdj {
+    color: #979797;
+    font-size: .6rem;
+    position: absolute;
+    float: right;
+    right: 25px;
+    /* z-index: 99999999; */
+    margin-top: -1.2rem;
+}
+</style>
 	        <div class="top-sch-box flex-col">
 	            <div class="centerflex">
-	                
-	                <input type="text" name="" id="" value="" class="sch-txt" placeholder="输入您要搜索的商品" />
+	                <form action="{:U('shop/index/lists')}" method="post">
+	                <input type="text" name="keyword" id="" value="" class="sch-txt" placeholder="输入您要搜索的商品" />
 	                <i class="fdj iconfont icon-sousuo"></i>
+					</form>
 	            </div>
 	        </div>
 	     
 	    </header>
-	    
+<script>
+$(function(){
+	$('.fdj').click(function(){
+		$("form:first").submit();
+	});
+
+});
+</script>	    
 	    
 		<div id="main" class="clearfloat warp">			
 		    <div class="mui-content">

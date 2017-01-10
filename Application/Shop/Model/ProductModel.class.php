@@ -37,7 +37,18 @@ class ProductModel extends Model {
         array('update_time', 'time', self::MODEL_BOTH, 'function'),
         array('status', '1', self::MODEL_INSERT),
     );
-    
+    /**
+     * 导航类型
+     * @author jry <598821125@qq.com>
+     */
+    public function get_type_name($id , $options=null){
+    	if($options){
+    		return $this->getFieldByid($id,$options);
+    	}else {
+    		return $this->getFieldByid($id,'title');
+    	}
+    	
+    }
     /**
      * 查找后置操作
      * @author jry <598821125@qq.com>

@@ -51,12 +51,12 @@ class IndexController extends BaseController {
     		$map['origin']  = array('EQ',$placeid);
     	}
     	
-        $map['group']    = I('group');
+        $map['group']    = I('group',1);
     	$map['status']  = array('EQ',1);
     	$order   = 'price ';
     	$order	.=	(I('order'))?I('order'):'desc';
     	
-//     	P($map);exit;
+//     	P($order);exit;
     	
     	// 获取所有分类
 	    switch ($group) {
@@ -74,6 +74,7 @@ class IndexController extends BaseController {
 //         D('product')->get_list_order($list);
 
 //         P($order);exit;
+        $this->assign('keyword', $keyword );
         $this->assign('list', $list );
         $this->assign('meta_title', $meta_title);
         $this->display();

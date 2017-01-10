@@ -1,0 +1,57 @@
+<include file="Publics/header" />
+	<body>
+		<header class="mui-bar mui-bar-nav report-header box-s" id="header">
+			<a href="javascript:history.go(-1)"><i class="iconfont icon-fanhui fl"></i></a>
+			<p>全部订单</p>
+	    </header>
+	    <div id="main" class="mui-clearfix">
+	    	<div class="order-top clearfloat">
+	    		<ul>
+	    			<li class="clearfloat cur"><a href="order.html">全部</a></li>
+	    			<li class="clearfloat"><a href="#">待付款</a></li>
+	    			<li class="clearfloat"><a href="#">待发货</a></li>
+	    			<li class="clearfloat"><a href="#">待收货</a></li>
+	    			<li class="clearfloat"><a href="#">待评价</a></li>
+	    		</ul>
+	    	</div>
+	    	<volist name="list" id="vo">
+	    		<div class="order-list clearfloat">
+	    		<p class="ordernum box-s">
+	    			订单 {$vo.sn}
+	    			<span>待付款</span>
+	    		</p>
+	    		<div class="list clearfloat fl box-s">
+	    			<a href="{:U('product/index',array('id'=>$vo[proid]))}">
+		    			<div class="tu fl clearfloat">
+		    				<img src="{:get_cover($vo.pic)}"/>
+		    			</div>
+		    			<div class="middle clearfloat fl">
+		    				<p class="tit"> {$vo.title}</p>
+		    				<p class="price clearfloat">
+		    					<span class="xprice fl">¥ {$vo.price}</span>
+		    					<span class="shu">× {$vo.number}</span>
+		    				</p>
+		    			</div>
+	    			</a>
+	    		</div>
+	    		<a href="#" class="gopay-btn fr">
+	    			立即支付
+	    		</a>
+	    		</div>
+	    	</volist>
+	    	
+	    	<style type="text/css">
+	    		.more-btn{width: 25%; padding: 3% 0; text-align: center; background-color: #00CC7D; color: #fff; font-size: .5rem; margin: 5% auto;}
+	    	</style>
+	    	<a href="#" class="more-btn db ra5">更多</a>
+	    </div>
+	    <!--footer star-->
+		<include file="Publics/footer" />
+		
+		<!--footer end-->
+	</body>
+	<script type="text/javascript" src="__SHOP_JS__/jquery-1.8.3.min.js" ></script>
+	<script src="__SHOP_JS__/fastclick.js"></script>
+	<script src="__SHOP_JS__/mui.min.js"></script>
+	<script type="text/javascript" src="__SHOP_JS__/hmt.js" ></script>
+</html>

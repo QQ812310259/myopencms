@@ -9,8 +9,10 @@
 	        </a>
 	        <div class="top-sch-box flex-col">
 	            <div class="centerflex">
+				<form action="{:U('shop/index/lists')}" method="post">
 	                <i class="fdj iconfont icon-sousuo"></i>
-	                <input type="text" name="" id="" value="" class="sch-txt" placeholder="输入您要搜索的商品" />
+	                <input type="text" name="keyword" id="" value="{$keyword}" class="sch-txt" placeholder="输入您要搜索的商品" />
+					</form>
 	            </div>
 	        </div>
 	        <a class="btn" href="#">
@@ -19,8 +21,41 @@
 	        </a>
 	    </header>
 		<!--header end-->
-		
+<script>
+$(function(){
+	$('.fdj').click(function(){
+		$("form:first").submit();
+	});
 
+});
+</script>			
+<style>
+.centerflex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    position: relative;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+.top-sch-box .sch-txt {
+    width: 100%;
+    padding: 0 25px;
+    border: none;
+    height: .9rem;
+    font-size: .4rem;
+    background-color: #e6e6e6;
+}
+.top-sch-box .fdj {
+    right: 10px;
+    position: absolute;
+    color: #979797;
+    font-size: .6rem;
+    float: left;
+    margin-top: 0.1rem;
+}
+</style>
 
 
 
@@ -54,7 +89,7 @@
          
 <script type="text/javascript">
 	$(function(){
-		group = {$Think.get.group};
+		group = {:I('group',1)};
 		pid=<if condition="$Think.get.pid neq ''">{$Think.get.pid}<else />0</if>;
 		cid=<if condition="$Think.get.cid neq ''">{$Think.get.cid}<else />0</if>;
 		
@@ -132,6 +167,12 @@
 			}
 
 		});
+		$('.order').click(function(){
+			self.location="{:U('lists')}"+'&pid='+pid+'&cid='+cid+'&group='+group+'&aid='+aid+'&aaid='+aaid+'&placeid='+placeid+'&order=asc';
+		});
+		$('.iconfontyy').click(function(){
+			self.location="{:U('lists')}"+'&pid='+pid+'&cid='+cid+'&group='+group+'&aid='+aid+'&aaid='+aaid+'&placeid='+placeid;
+		});
 	});
 </script>
 
@@ -168,9 +209,9 @@
 <div style=" clear: both;"></div>
 				<div class="top clearfloat">
 					<ul>
-						<li style="color: #ff0000">价格最高</li>
-						<li>价格最低<i class="iconfont "></i></li>
-						<li>人气销量<i class="iconfont "></i></li>
+						<li class="iconfontyy" <empty name="Think.get.order">style="color: #ff0000"</empty> >价格最高</li>
+						<li class="order" <notempty name="Think.get.order">style="color: #ff0000"</notempty>>价格最低<i class="iconfont"></i></li>
+						<li>人气销量<i class="iconfontt"></i></li>
 					</ul>
 				</div>
 

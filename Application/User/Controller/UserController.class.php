@@ -79,6 +79,9 @@ class UserController extends HomeController {
                     if (I('post.mobile')) {
                         $reg_data['mobile'] = I('post.mobile');
                     }
+                    if (I('post.gotopage')) {
+                    	$gotopage = I('post.gotopage');
+                    }
                     break;
                 case 'email': //邮箱注册
                     //验证码严格加盐加密验证
@@ -122,7 +125,9 @@ class UserController extends HomeController {
                 if ($id) {
                     session('reg_verify', null);
                     $user_info = $user_object->login($data['username'], I('post.password'), true);
-
+                    /* 2017110修改 */
+					if($gotopage)$this->success('注册成功', $gotopage);
+					
                     // 构造消息数据
                     $msg_data['to_uid'] = $user_info['id'];
                     $msg_data['title']  = '注册成功';
@@ -135,6 +140,7 @@ class UserController extends HomeController {
                                            .'密码：'.$_POST['password'].'<br>'
                                            .'<br>';
                     D('User/Message')->sendMessage($msg_data);
+                    
                     if (is_wap()) {
                         $url = U('User/Center/index');
                     } else {

@@ -30,7 +30,7 @@ class ProductController extends BaseController {
     	$v['number']	=	I('number');
     	$v['sell']	=	I('sell');
     	$v['id']	=	I('id');
-    	if(!$v['id'])$this->error('参数错误',U('index/lists'));
+    	if(!$v['id'])$this->error('参数错误',U('shop/index/lists'));
     	$info	=	D('product')->find(I('id'));
     	D('product')->_get_list_data($info);
 //     	P($v);exit;
@@ -44,7 +44,7 @@ class ProductController extends BaseController {
      */
     public function need(){
     	$data['sn']	=	build_order_no();
-    	$data['uid']	=	2;
+    	$data['uid']	=	session('user_auth.uid');
     	$data['sell']	=	I('sell');
     	$data['proid']	=	I('id');
     	$data['number']	=	I('number');
@@ -53,9 +53,9 @@ class ProductController extends BaseController {
     	if($info){
     		$chat	=	D('order')->add($data);
     		if ($chat) {
-    			$this->success('下订单成功',U('user/index'));
+    			$this->success('下订单成功',U('shop/user/index'));
     		}else {
-    			$this->error('下订单失败,请稍后再试',U('index/lists'));
+    			$this->error('下订单失败,请稍后再试',U('shop/index/lists'));
     		}
     	}
     }
