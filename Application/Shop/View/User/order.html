@@ -1,5 +1,5 @@
-<include file="Publics/header" />
-	<body>
+
+	<include file="Publics/header" /><body>
 		<header class="mui-bar mui-bar-nav report-header box-s" id="header">
 			<a href="javascript:history.go(-1)"><i class="iconfont icon-fanhui fl"></i></a>
 			<p>全部订单</p>
@@ -21,7 +21,7 @@
 	    			<span>待付款</span>
 	    		</p>
 	    		<div class="list clearfloat fl box-s">
-	    			<a href="{:U('product/index',array('id'=>$vo[proid]))}">
+	    			<a href="{:U('shop/'.$vo[proid])}">
 		    			<div class="tu fl clearfloat">
 		    				<img src="{:get_cover($vo.pic)}"/>
 		    			</div>

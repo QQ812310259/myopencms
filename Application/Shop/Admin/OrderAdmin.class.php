@@ -22,6 +22,7 @@ class OrderAdmin extends AdminController {
         $keyword = I('keyword', '', 'string');
         $condition = array('like','%'.$keyword.'%');
         $map['id|sn'] = array(
+        	$condition,
             $condition,
             '_multi'=>true
         );

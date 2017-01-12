@@ -43,13 +43,14 @@ EOF;
         $keyword = I('keyword', '', 'string');
         $condition = array('like','%'.$keyword.'%');
         $map['id|title'] = array(
+        	$condition,
             $condition,
             '_multi'=>true
         );
 
         // 获取所有分类
         $map['status'] = array('egt', '0');
-        $map['group']	=	$group;
+        $map['group'] = array('eq', $group);
         $data_list = D('product')
                    ->where($map)
                    ->order('sort asc, id asc')
@@ -65,7 +66,7 @@ EOF;
         	$tab_list[$key]['title'] = $val;
         	$tab_list[$key]['href']  = U('index', array('group' => $key));
         }
-//         P(D('type')->group_list());exit;
+//         P($map);exit;
         
         // 使用Builder快速建立列表页面。
         $builder = new \Common\Builder\ListBuilder();

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2017 �?01 �?05 �?09:11
+-- 生成日期: 2017 �?01 �?11 �?02:16
 -- 服务器版本: 5.7.11
 -- PHP 版本: 5.6.19
 
@@ -423,7 +423,7 @@ CREATE TABLE IF NOT EXISTS `oc_admin_user` (
   `status` tinyint(3) NOT NULL DEFAULT '0' COMMENT '状态',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='用户账号表' AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='用户账号表' AUTO_INCREMENT=5 ;
 
 --
 -- 转存表中的数据 `oc_admin_user`
@@ -431,7 +431,8 @@ CREATE TABLE IF NOT EXISTS `oc_admin_user` (
 
 INSERT INTO `oc_admin_user` (`id`, `user_type`, `nickname`, `username`, `password`, `email`, `email_bind`, `mobile`, `mobile_bind`, `avatar`, `score`, `money`, `reg_ip`, `reg_type`, `create_time`, `update_time`, `status`) VALUES
 (1, 1, '超级管理员', 'admin', 'c0753bab4c5d066075304fa2b7596792', '', 0, '', 0, 0, 0, '0.00', 0, '', 1438651748, 1438651748, 1),
-(2, 1, '管理员', 'shop', '4f4ccd4c9cd60160b050ab84b1503c46', '123465@qq.com', 0, '13169279796', 0, 0, 0, '0.00', 0, 'admin', 1483538467, 1483538467, 1);
+(2, 1, '管理员', 'shop', '4f4ccd4c9cd60160b050ab84b1503c46', '123465@qq.com', 0, '13169279796', 0, 0, 0, '0.00', 0, 'admin', 1483538467, 1483538467, 1),
+(4, 1, 'huiyuan', 'huiyuan', '4f4ccd4c9cd60160b050ab84b1503c46', '', 0, '', 0, 0, 0, '0.00', 2130706433, 'username', 1484012648, 1484012648, 1);
 
 -- --------------------------------------------------------
 
@@ -45787,8 +45788,10 @@ CREATE TABLE IF NOT EXISTS `oc_shop_order` (
   `sn` varchar(32) NOT NULL COMMENT '订单编号',
   `status` tinyint(3) NOT NULL DEFAULT '1' COMMENT '订单状态',
   `proid` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '产品id',
-  `openid` varchar(255) NOT NULL,
-  `price` int(15) NOT NULL DEFAULT '0' COMMENT '订单总价',
+  `number` int(10) NOT NULL,
+  `sell` int(3) NOT NULL DEFAULT '0',
+  `openid` varchar(255) DEFAULT NULL,
+  `price` double(20,2) NOT NULL DEFAULT '0.00' COMMENT '订单总价',
   `token` varchar(50) DEFAULT NULL COMMENT '令牌',
   `uid` int(10) unsigned NOT NULL COMMENT '订单创建人',
   `payment` varchar(10) NOT NULL DEFAULT 'none' COMMENT '订单支付方式',
@@ -45796,13 +45799,21 @@ CREATE TABLE IF NOT EXISTS `oc_shop_order` (
   `transaction_id` varchar(35) DEFAULT NULL COMMENT '支付流水号',
   `note` varchar(255) NOT NULL DEFAULT '' COMMENT '备注',
   `bank_type` varchar(100) DEFAULT NULL COMMENT '付款银行',
-  `total_fee` double(10,2) NOT NULL COMMENT '订单金额',
+  `total_fee` double(20,2) NOT NULL DEFAULT '0.00' COMMENT '订单金额',
   `create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '订单创建时间',
   `update_time` int(11) unsigned NOT NULL DEFAULT '0',
   `sort` tinyint(3) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `sn` (`sn`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- 转存表中的数据 `oc_shop_order`
+--
+
+INSERT INTO `oc_shop_order` (`id`, `sn`, `status`, `proid`, `number`, `sell`, `openid`, `price`, `token`, `uid`, `payment`, `time_end`, `transaction_id`, `note`, `bank_type`, `total_fee`, `create_time`, `update_time`, `sort`) VALUES
+(1, '2017010998515297', 1, 8, 2, 2, NULL, 5000.00, NULL, 2, 'none', 0, NULL, '', NULL, 0.00, 0, 0, 0),
+(2, '2017011099579953', 1, 1, 3, 2, NULL, 5000.00, NULL, 4, 'none', 0, NULL, '', NULL, 0.00, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -45858,7 +45869,7 @@ CREATE TABLE IF NOT EXISTS `oc_shop_product` (
   `sort` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
   `status` tinyint(3) NOT NULL DEFAULT '0' COMMENT '状态',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='前台产品分类' AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='前台产品分类' AUTO_INCREMENT=12 ;
 
 --
 -- 转存表中的数据 `oc_shop_product`
@@ -45866,7 +45877,16 @@ CREATE TABLE IF NOT EXISTS `oc_shop_product` (
 
 INSERT INTO `oc_shop_product` (`id`, `group`, `type`, `title`, `pic`, `origin`, `place`, `placetype`, `price`, `sn`, `sell`, `create_time`, `update_time`, `sort`, `status`) VALUES
 (1, 1, 2, '佛山本地猪', 9, 2, '73', 2, 5000.00, '06696', 1, 1483499224, 1483520095, 0, 1),
-(2, 1, 2, '正宗猪肉', 0, 0, '289', 2, 669.00, '003695', 1, 1483510960, 1483537739, 0, 1);
+(2, 1, 2, '正宗猪肉', 0, 2, '294', 2, 799.00, '003695', 1, 1483510960, 1483930908, 0, 1),
+(3, 1, 4, '佛山本地猪', 9, 5, '294', 2, 5000.00, '06696', 1, 1483499224, 1483927175, 0, 1),
+(4, 1, 5, '佛山本地猪', 9, 3, '294', 2, 5000.00, '06696', 1, 1483499224, 1483927351, 0, 1),
+(5, 1, 7, '佛山本地猪', 9, 3, '294', 2, 5000.00, '06696', 1, 1483499224, 1483927203, 0, 1),
+(6, 1, 5, '佛山本地猪', 9, 5, '294', 2, 5000.00, '06696', 1, 1483499224, 1483927216, 0, 1),
+(7, 1, 9, '佛山本地猪', 9, 5, '294', 2, 5000.00, '06696', 1, 1483499224, 1483927228, 0, 1),
+(8, 1, 2, '佛山本地猪', 9, 2, '294', 2, 5000.00, '06696', 1, 1483499224, 1483520095, 0, 1),
+(9, 1, 3, '佛山本地猪', 9, 3, '294', 2, 5000.00, '06696', 1, 1483499224, 1483927245, 0, 1),
+(10, 1, 8, '佛山本地猪', 9, 5, '294', 2, 5000.00, '06696', 1, 1483499224, 1483927259, 0, 1),
+(11, 1, 2, '佛山本地猪', 9, 2, '294', 2, 5000.00, '06696', 1, 1483499224, 1483520095, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -45960,7 +45980,14 @@ CREATE TABLE IF NOT EXISTS `oc_user_message` (
   `sort` tinyint(4) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
   `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='用户消息表' AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='用户消息表' AUTO_INCREMENT=2 ;
+
+--
+-- 转存表中的数据 `oc_user_message`
+--
+
+INSERT INTO `oc_user_message` (`id`, `pid`, `title`, `content`, `type`, `to_uid`, `from_uid`, `is_read`, `create_time`, `update_time`, `sort`, `status`) VALUES
+(1, 0, '注册成功', '少侠/女侠好：<br>恭喜您成功注册Samcms的帐号<br>您的帐号信息如下（请妥善保管）：<br>UID：3<br>昵称：huiyuan<br>用户名：huiyuan<br>密码：123qwe<br><br>', 0, 3, 0, 0, 1484012497, 1484012497, 0, 1);
 
 -- --------------------------------------------------------
 

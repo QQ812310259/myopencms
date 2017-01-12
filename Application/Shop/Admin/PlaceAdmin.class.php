@@ -22,6 +22,7 @@ class PlaceAdmin extends AdminController {
         $keyword = I('keyword', '', 'string');
         $condition = array('like','%'.$keyword.'%');
         $map['id|title'] = array(
+        	$condition,
             $condition,
             '_multi'=>true
         );

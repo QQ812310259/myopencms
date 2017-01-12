@@ -30,7 +30,29 @@ return array(
     'URL_MAP_RULES'     => array(
     ),
     'URL_ROUTE_RULES'   => array(
-
+    	':id\d'       => 'product/index',
     ),
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 );

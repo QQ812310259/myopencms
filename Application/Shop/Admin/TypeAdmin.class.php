@@ -23,6 +23,7 @@ class TypeAdmin extends AdminController {
         $condition = array('like','%'.$keyword.'%');
         $map['id|title'] = array(
             $condition,
+        	$condition,
             '_multi'=>true
         );
 

@@ -68,7 +68,7 @@ class TypeModel extends Model {
     }
     
     /**
-     * 导航类型
+     * 获取名称
      * @author jry <598821125@qq.com>
      */
     public function get_type_name($id) {

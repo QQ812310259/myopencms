@@ -1,7 +1,5 @@
-
-
-
-	<include file="Publics/header" /><body>
+<include file="Publics/header" />
+<body>
 		<!--header star-->
 	    <header class="mui-bar mui-bar-nav" id="header">
 			<a class="btn" href="javascript:history.go(-1)">
@@ -9,7 +7,7 @@
 	        </a>
 	        <div class="top-sch-box flex-col">
 	            <div class="centerflex">
-				<form action="{:U('shop/index/lists')}" method="post">
+				<form action="" method="post">
 	                <i class="fdj iconfont icon-sousuo"></i>
 	                <input type="text" name="keyword" id="" value="{$keyword}" class="sch-txt" placeholder="输入您要搜索的商品" />
 					</form>
@@ -231,11 +229,11 @@ $(function(){
 					<volist name="list" id="vo">
 					<div class="lie clearfloat">
 						<div class="right clearfloat fl">
-							<a href="{:U('product/index',array('id'=>$vo[id]))}">
+							<a href="{:U('shop/'.$vo[id])}">
 								<p class="tit">{$vo.title}</p>
 							</a>
 							<div class="xia clearfloat">
-								<a href="{:U('product/index',array('id'=>$vo[id]))}">
+								<a href="{:U('shop/'.$vo[id])}">
 									<p class="jifen fl over">-18℃以下冷冻储存，不膻不腻，足不出户，享受纯正好羊肉，烧烤必备。</p>
 								</a>
 								<div style=" clear: both; " ></div>
@@ -270,5 +268,8 @@ $(function(){
 	<script type="text/javascript" src="__SHOP_JS__/hmt.js" ></script>
 	<script src="__SHOP_SLICK__/slick.js" type="text/javascript" ></script>
 	<!--插件-->
+	
+
+
 	<link rel="stylesheet" href="__SHOP_CSS__/swiper.min.css">
 </html>
