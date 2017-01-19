@@ -1,0 +1,406 @@
+<extend name="$_admin_public_layout"/>
+<block name="main">
+<link rel="stylesheet" type="text/css" href="././Application/Weixin/View/Public/css/admin.css">
+<link rel="stylesheet" type="text/css" href="./Public/libs/cui/css/cui.extend.min.css">
+<script type="text/javascript" src="./Public/libs/cui/js/cui.extend.min.js"></script>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel-body">
+            <!-- 表单 -->
+      <div id="form" action="{$post_url}" class="form-horizontal form-center">
+        <div class="material_form">
+       		<div class="preview_area">
+            <if condition="empty($main)">
+            	<form data-index='0' class="appmsg_item edit_item editing">
+                    <p class="time">时间</p>
+                    <div class="main_img">
+                        <img src="__IMG__/no_cover_pic.png" data-coverid="0"/>
+                        <h6 class="title">这是标题</h6>
+                    </div>
+                    <p class="intro"></p>
+                     <input type="hidden" name="title" placeholder="这是标题" />
+                     <input type="hidden" name="cover_id" value="0"/>
+                    <input type="hidden" name="intro" placeholder="这是摘要描述"/>
+                    <input type="hidden" name="author" placeholder="作者"/>
+                    <input type="hidden" name="link" placeholder="外链"/>
+                    <textarea style="display:none" name="content"></textarea>
+                    <div class="hover_area"><a href="javascript:;" onClick="editItem(this)">编辑</a></div>
+                </form>
+                <else />
+                  <form data-index='0' class="appmsg_item edit_item editing">
+                    <p class="time">{$main.cTime|time_format}</p>
+                    <div class="main_img">
+                        <img src="{$main.cover_id|get_cover}" data-coverid="{$main.cover_id|intval}"/>
+                        <h6 class="title">{$main.title}</h6>
+                    </div>
+                    <p class="intro">{$main.intro}</p>
+                    <input type="hidden" name="id" value="{$main.id}"/>
+                     <input type="hidden" name="title" value="{$main.title}" />
+                      <input type="hidden" name="cover_id" value="{$main.cover_id}"/>
+                    <input type="hidden" name="intro" value="{$main.intro}"/>
+                    <input type="hidden" name="author" value="{$main.author}"/>
+                    <input type="hidden" name="link" value="{$main.link}"/>
+                    <textarea style="display:none" name="content">{$main.content}</textarea>
+                    <div class="hover_area"><a href="javascript:;" onClick="editItem(this)">编辑</a></div>
+                </form>
+                <volist name="others" id="vo">
+                <form data-index='{$key}' class="appmsg_sub_item edit_item">
+                    <p class="title">{$vo.title}</p>
+                    <div class="main_img">
+                        <img src="{$vo.cover_id|get_cover}" data-coverid="{$vo.cover_id|get_cover}"/>
+                    </div>
+                    <input type="hidden" name="id" value="{$vo.id}"/>
+                     <input type="hidden" name="title" value="{$vo.title}"/>
+                    <input type="hidden" name="cover_id" value="{$vo.cover_id}"/>
+                    <input type="hidden" name="intro" value="{$vo.intro}"/>
+                    <input type="hidden" name="author" value="{$vo.author}"/>
+                    <input type="hidden" name="link" value="{$vo.link}"/>
+                    <textarea style="display:none" name="content">{$vo.content}</textarea>
+                    <div class="hover_area"><a href="javascript:;" onClick="editItem(this)">编辑</a><a href="javascript:;" onClick="deleteItem(this)">删除</a></div>
+                </form>
+                </volist>
+              </if>
+                <div class="appmsg_edit_action">
+                    <a href="javascript:;" onClick="addMsg();">添加</a>
+                </div>
+            </div>
+            <div class="edit_area">
+            	<em class="area_arrow"></em>
+            	<div class="">
+                	<ul class="tab-pane in appmsg_edit_group">
+                        <li class="form-item cf">
+                            <label class="item-label"><span class="need_flag">*</span>标题<span class="check-tips"></span></label>
+                            <div class="controls">
+                              <input type="text" class="text input-large" name="p_title" value="">
+                            </div>
+                      </li>  
+                          <li class="form-item cf">
+                            <label class="item-label">作者<span class="check-tips"></span></label>
+                            <div class="controls">
+                              <input type="text" class="text input-large" name="p_author" value="">
+                            </div>
+                          </li>  
+                          
+                          <li class="form-item cf ">
+                          <div class="form-group infopic item_cover ">
+        <label class="left control-label">封面图片：</label>
+        <div class="right row">
+            <div  id="_upload_box_4" class="wu-example">
+                <!--用来存放文件信息-->
+                <div id="_upload_list_4" class="uploader-list col-xs-12 img-box">
+                                            <div id="_upload_preview_4" class="col-md-4 file-item thumbnail upload-img-box hidden">
+                            <i class="fa fa-times-circle remove-picture"></i>
+                            <img>
+                        </div>                </div>
+                <div class="btns col-xs-12">
+                    <input type="hidden" id="_upload_input_4" name="cover" value="">
+                    <div id="_upload_4">上传图片</div>
+                    <button id="ctlBtn" class="btn btn-default hidden">开始上传</button>
+                    <span class="check-tips text-muted small"></span>                </div>
+            </div>
+
+            <script type="text/javascript">
+                $(function(){
+                    var uploader__upload_4 = WebUploader.create({
+                        auto: true,                                                                    // 选完文件后，是否自动上传
+                        duplicate: true,                                                               // 同一文件是否可以重复上传
+                        swf: './Public/libs/cui/swf/uploader.swf',                                               // swf文件路径
+                        server: '/admin.php?s=/admin/upload/upload/dir/image.html',    // 文件接收服务端
+                        pick: '#_upload_4',                                   // 选择文件的按钮
+                        resize: false,                                                                 // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+                        //fileNumLimit: 1,                                                             // 验证文件总数量, 超出则不允许加入队列
+                        fileSingleSizeLimit:10*1024*1024,  // 验证单个文件大小是否超出限制, 超出则不允许加入队列
+                        // 文件过滤
+                        accept: {
+                            title: 'Images',
+                            extensions: 'gif,jpg,jpeg,bmp,png',
+                            mimeTypes: 'image/*'
+                        }
+                    });
+
+                    // 文件上传过程中创建进度条实时显示。
+                    uploader__upload_4.on( 'uploadProgress', function( file, percentage ) {
+                        $( '#_upload_preview_4').removeClass('hidden');
+                        var $li = $( '#_upload_preview_4'),
+                            $percent = $li.find('.progress .progress-bar');
+                        // 避免重复创建
+                        if ( !$percent.length ) {
+                            $percent = $('<div class="progress"><div class="progress-bar"></div></div>')
+                                    .appendTo( $li )
+                                    .find('.progress-bar');
+                        }
+                        $percent.css( 'width', percentage * 100 + '%' );
+                    });
+
+                    // 完成上传完了，成功或者失败，先删除进度条。
+                    uploader__upload_4.on( 'uploadComplete', function( file ) {
+                        $( '#_upload_preview_4' ).find('.progress').remove();
+                    });
+
+                    // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+                    uploader__upload_4.on( 'uploadSuccess', function( file , response) {
+                        $( '#_upload_preview_4' ).addClass('upload-state-done');
+                        if(eval('response').status == 0){
+                            $.alertMessager(response.info);
+                        } else {
+                            $( '#_upload_input_4' ).attr('value', response.id);
+                            $( '#_upload_preview_4 img').attr('src', response.url);
+                            $( '#_upload_preview_4 img').attr('data-id', response.id);
+							uploadImgCallback("cover_id",response.id,response.url);
+                        }
+                    });
+
+                    // 文件上传失败，显示上传出错。
+                    uploader__upload_4.on( 'uploadError', function( file ) {
+                        $.alertMessager('error');
+                        var $li = $( '#_upload_preview_4'),
+                            $error = $li.find('div.error');
+                        // 避免重复创建
+                        if ( !$error.length ) {
+                            $error = $('<div class="error"></div>').appendTo( $li );
+                        }
+                        $error.text('上传失败');
+                    });
+
+                    // 删除图片
+                    $(document).on('click', '#_upload_list_4 .remove-picture', function() {
+                        $( '#_upload_input_4' ).val('') //删除后覆盖原input的值为空
+                        $( '#_upload_preview_4').addClass('hidden');
+                    });
+                });
+            </script>
+        </div>
+    </div> 
+                          
+                          
+                          </li>
+                                                   
+                          <li class="form-item cf">
+                                <label class="item-label">摘要<span class="check-tips"></span></label>
+                                <div class="controls">
+                                  <label class="textarea">
+                                  <textarea style="width:405px; height:200px;" name="p_content" ></textarea>
+                                  		<input type="hidden" name="parse" value="0">
+		        
+			<script type="text/javascript" charset="utf-8" src="./Public/static/ueditor/ueditor.config.js?v=1467091741"></script>
+			<script type="text/javascript" charset="utf-8" src="./Public/static/ueditor/ueditor.all.min.js?v=1467091741"></script>
+			<script type="text/javascript" charset="utf-8" src="./Public/static/ueditor/lang/zh-cn/zh-cn.js?v=1467091741"></script>
+         
+			<script type="text/javascript">
+				$('textarea[name="p_content"]').attr('id', 'editor_id_p_content');
+				window.UEDITOR_HOME_URL = "./Public/static/ueditor";
+				window.UEDITOR_CONFIG.initialFrameHeight = parseInt('500px');
+				window.UEDITOR_CONFIG.scaleEnabled = true;
+				window.UEDITOR_CONFIG.imageUrl = '/?s=/plugin/EditorForAdmin/Upload/ue_upimg.html';
+				window.UEDITOR_CONFIG.imagePath = '';
+				window.UEDITOR_CONFIG.imageFieldName = 'imgFile';
+				//在这里扫描图片
+				window.UEDITOR_CONFIG.imageManagerUrl='/?s=/plugin/EditorForAdmin/Upload/ue_mgimg.html';//图片在线管理的处理地址
+        		window.UEDITOR_CONFIG.imageManagerPath='';        
+				var imageEditor = UE.getEditor('editor_id_p_content',{
+						toolbars: [
+							['fullscreen','source', 'undo', 'redo',  
+                'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall',  
+                 'lineheight',  
+                'customstyle', 'paragraph', 'fontfamily', 'fontsize', 'indent',
+                'justifyleft', 'justifycenter', 'justifyright',
+                'link', 'unlink',  'insertimage', 'emotion', 'insertvideo', 'music', 'attachment', 'map']
+						],
+						autoHeightEnabled: false,
+						autoFloatEnabled: true,
+						initialFrameHeight:300
+					});
+				imageEditor.styleUrl = "/?s=/plugin/EditorForAdmin/Style/get_article_style.html";
+				//添加一下判断是否是单个按钮管理图片 需要执行一下代码
+							</script>
+            <script type="text/javascript" charset="utf-8" src="./Public/static/ueditor/h5/main.js?v=1467091741"></script> </label>
+                  
+                                </div>
+                      </li>   
+                            <li class="form-item cf">
+                            <label class="item-label">外链<span class="check-tips"></span></label>
+                            <div class="controls">
+                              <input type="text" class="text input-large" name="p_link" value="">
+                            </div>
+                          </li>  
+                  </ul>
+                </div>
+            </div>
+        </div>
+        <div class="form-item form_bh">
+        <form id="upmatdate" name="upmatdate" action="{$post_url}" method="post" >
+         <input type="hidden" name="dataStr" id="dataStr" />          
+        </form>         
+         <div class="form-group">
+         <button class="btn submit-btn btn-primary" id="submit" type="button">{$submit_name|default='确 定'}</button>
+         <button class="btn btn-default return visible-md-inline visible-lg-inline" onclick="javascript:history.back(-1);return false;">返回</button>
+                        </div>
+        </div>
+      </div>
+    
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+$('#submit').click(function(){
+    var postUrl = $('#form').attr('action');
+	var dataJson = [];
+	$('.edit_item').each(function(index, element) {
+        dataJson.push($(this).serializeArray());
+    });
+	
+	//alert(JSON.stringify(dataJson));
+	$(this).addClass('disabled');
+	
+	$('input[name="dataStr"]').val(JSON.stringify(dataJson));
+	
+	$("#upmatdate").submit(); 
+	
+	//console.log(dataJson);
+	//console.log(JSON.stringify(dataJson));
+	//提交数组字符串 php解析后进行保存
+	/*
+	$.post(postUrl,{'dataStr':JSON.stringify(dataJson)},function(data){
+		$('#submit').removeClass('disabled');
+		if(data.status==1){
+			updateAlert(data.info,'success');
+			setTimeout(function(){
+				  location.href=data.url;
+			},1500);
+		}else{
+			updateAlert(data.info);
+		}
+	})
+	return false;
+	*/
+});
+$(function(){
+	//初始化上传图片插件
+	//initUploadImg(); //by sam
+
+    //showTab();   //by sam
+	
+	$('.toggle-data').each(function(){
+		var data = $(this).attr('toggle-data');
+		if(data=='') return true;		
+		
+	     if($(this).is(":selected") || $(this).is(":checked")){
+			 change_event(this)
+		 }
+	});
+	
+	$('select').change(function(){
+		$('.toggle-data').each(function(){
+			var data = $(this).attr('toggle-data');
+			if(data=='') return true;		
+			
+			 if($(this).is(":selected") || $(this).is(":checked")){
+				 change_event(this)
+			 }
+		});
+	});
+	
+	//动态预览
+	$('input[name="p_title"]').keyup(function(){
+		$('.editing').find('.title').text($(this).val());
+		$('.editing').find('input[name="title"]').val($(this).val());
+	});
+	$('input[name="p_author"]').keyup(function(){
+		$('.editing').find('.author').text($(this).val());
+		$('.editing').find('input[name="author"]').val($(this).val());
+	});
+	$('input[name="p_link"]').keyup(function(){
+		$('.editing').find('.link').text($(this).val());
+		$('.editing').find('input[name="link"]').val($(this).val());
+	});
+	$('textarea[name="p_intro"]').keyup(function(){
+		$('.editing').find('.intro').text($(this).val());
+		$('.editing').find('input[name="intro"]').val($(this).val());
+	});
+		
+	imageEditor.addListener("contentChange",function(){
+		$('.editing').find('textarea[name="content"]').val(imageEditor.getContent());
+	});
+	imageEditor.addListener("ready", function () {
+       initForm($('.edit_item').eq(0));
+ 	});
+	
+	
+});
+function addMsg(){
+	var curCount = $('.edit_item').size();
+	if(curCount>=8){
+		updateAlert('你最多只可以增加8条图文信息');
+		return false;
+	}
+	//console.log(curCount);
+	var addHtml = $('<form data-index="'+curCount+'" class="appmsg_sub_item edit_item">'+
+                    '<p class="title"></p>'+
+                    '<div class="main_img">'+
+                        '<img src="__IMG__/no_cover_pic_s.png" data-coverid="0"/>'+
+                    '</div>'+
+                    '<input type="hidden" name="title" placeholder="这是标题"/>'+
+                    '<input type="hidden" name="cover_id" value="0"/>'+
+                    '<input type="hidden" name="intro" placeholder="这是摘要描述"/>'+
+                    '<input type="hidden" name="author" placeholder="作者"/>'+
+                    '<input type="hidden" name="link" placeholder="外链"/>'+
+                    '<textarea style="display:none" name="content"></textarea>'+
+                    '<div class="hover_area"><a href="javascript:;" onClick="editItem(this)">编辑</a><a href="javascript:;" onClick="deleteItem(this)">删除</a></div>'+
+                '</form>');
+	addHtml.insertBefore($('.appmsg_edit_action'));
+}
+function editItem(_this){
+	$(_this).parents('.edit_item').addClass('editing');
+	$(_this).parents('.edit_item').siblings().removeClass('editing');
+	var index = $(_this).parents('.edit_item').data('index');
+	if(index==0){
+		$('.edit_area').css('margin-top',0);
+	}else{
+		$('.edit_area').css('margin-top',index*110+120);
+	}
+	initForm($(_this).parents('.edit_item'));
+}
+function deleteItem(_this){
+	if(!confirm('确认删除？')) return false;
+	
+	var item_id = $(_this).parents('.edit_item').find('input[name="id"]').val();
+	if(item_id){
+		$.post("{:U('del_material_by_id')}",{id:item_id});
+	}
+	
+	$(_this).parents('.edit_item').remove();
+	var curCount = $('.edit_item').size();
+	if(curCount==1){
+		$('.edit_area').css('margin-top',0);
+	}else{
+		$('.edit_area').css('margin-top',(curCount-1)*110+120);
+	}
+	initForm($('.edit_item').eq(curCount-1));
+}
+function uploadImgCallback(name,id,src){
+	$('.editing img').attr('src',src);
+	$('.editing input[name="cover_id"]').val(id);
+}
+function initForm(_item){
+	var title = $(_item).find('input[name="title"]').val();
+	var author = $(_item).find('input[name="author"]').val();
+	var link = $(_item).find('input[name="link"]').val();
+	var intro = $(_item).find('input[name="intro"]').val();
+	var content = $(_item).find('textarea[name="content"]').val();
+	var src = $(_item).find('img').attr('src');
+	$('input[name="p_title"]').val(title);
+	$('input[name="p_author"]').val(author);
+	$('input[name="p_link"]').val(link);
+	$('textarea[name="p_intro"]').val(intro);
+	//kindeditor.html(content);
+	//$('textarea[name="p_content"]').val(content);
+	
+	if(!content)content=" ";
+	if(content){
+		imageEditor.setContent(content);
+	}
+	$( '#_upload_preview_4').removeClass('hidden');
+	$('.upload-img-box').show().find('img').attr('src',src);
+}
+</script> 
+</block>

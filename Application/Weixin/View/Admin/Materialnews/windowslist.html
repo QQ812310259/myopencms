@@ -1,0 +1,63 @@
+<extend name="$_admin_public_layout"/>
+<block name="main">
+<link rel="stylesheet" type="text/css" href="././Application/Weixin/View/Public/css/admin.css">
+<script type="text/javascript" src="./Public/libs/layer/layer.js"></script>
+<style>
+.full-header{display:none;}
+#sidebar{display:none;}
+.full-container .with-top-navbar{padding-top:1px;}
+#main{top:0px;left:0px;}
+.breadcrumb{display:none;}
+</style>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel-body">
+            <!-- 数据列表 -->
+      <div class="data-table">
+      
+        <div class="table-striped">
+        	<ul class="material_list js-masonry"  data-masonry-options='{ "itemSelector": ".appmsg_li", "columWidth": 308 }'>
+            <volist name="list" id="vo">
+                <!-- 多图文 -->
+                <div id="matetxt{$vo.id}">
+                <li class="appmsg_li" onClick="setmaterial({$vo.group_id});">
+                	<div class="appmsg_item">
+                        <p class="title">{$vo.cTime|time_format}</p>
+                        <div class="main_img">
+                            <img src="{$vo.cover_id|get_cover}"/>
+                            <h6>{$vo.title}</h6>
+                        </div>
+                        <p class="desc">{$vo.intro}</p>
+                    </div>
+                    <volist name="vo.child" id="vv">
+                    <div class="appmsg_sub_item">
+                        <p class="title">{$vv.title}</p>
+                        <div class="main_img">
+                            <img src="{$vv.cover_id|get_cover}"/>
+                        </div>
+                    </div>
+                    </volist>
+                </li>
+                </div>
+            	</volist>
+            </ul>
+          
+        </div>
+      </div>
+      <div class="page">{$page} </div>
+    
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+	
+	function setmaterial (idd)
+	{
+		var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+		parent.$('input[name="reply_key"]').val(idd);
+		parent.$('.item_selmate .tumang').html($('#matetxt'+idd).html());
+		
+        parent.layer.close(index);
+	}
+    </script>
+</block>

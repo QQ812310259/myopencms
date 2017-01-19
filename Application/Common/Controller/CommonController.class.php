@@ -69,4 +69,24 @@ class CommonController extends Controller {
             $this->view->display($template);
         }
     }
+    /**
+     * 获取模型
+     */
+    function getmodel($mob="") {
+        if (!empty($mob)) {
+            $model = D($mob);
+        }
+
+        if (empty($model)) {
+            if (!empty($this->thismodel)) {
+                $model = D($this->thismodel);
+            }
+        }
+
+        if (empty($model)) {
+            $model = D(CONTROLLER_NAME);
+        }
+        
+        return $model;
+    }
 }

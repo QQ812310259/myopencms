@@ -19,6 +19,7 @@ class HomeController extends CommonController {
      * @author jry <598821125@qq.com>
      */
     protected function _initialize() {
+    	Cookie('__forward__', C('HOME_PAGE'));
         // 系统开关
         if (!C('TOGGLE_WEB_SITE')) {
             $this->error('站点已经关闭，请稍后访问~');

@@ -1,0 +1,18 @@
+                <li class="appmsg_li">
+                	<div class="appmsg_item">
+                        <p class="title">{$main.cTime|time_format}</p>
+                        <div class="main_img">
+                            <img src="{$main.cover_id|get_cover}"/>
+                            <h6>{$main.title}</h6>
+                        </div>
+                        <p class="desc">{$main.intro}</p>
+                    </div>
+                    <volist name="others" id="vv">
+                    <div class="appmsg_sub_item">
+                        <p class="title">{$vv.title}</p>
+                        <div class="main_img">
+                            <img src="{$vv.cover_id|get_cover}"/>
+                        </div>
+                    </div>
+                    </volist>
+                </li>

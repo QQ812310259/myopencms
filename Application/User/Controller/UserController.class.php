@@ -70,9 +70,9 @@ class UserController extends HomeController {
             switch ($reg_type) {
                 case 'username': //用户名注册
                     //图片验证码校验
-                    if (!$this->check_verify(I('post.verify'))) {
-                        $this->error('验证码输入错误！');
-                    }
+//                     if (!$this->check_verify(I('post.verify'))) {
+//                         $this->error('验证码输入错误！');
+//                     }
                     if (I('post.email')) {
                         $reg_data['email'] = I('post.email');
                     }
@@ -125,8 +125,10 @@ class UserController extends HomeController {
                 if ($id) {
                     session('reg_verify', null);
                     $user_info = $user_object->login($data['username'], I('post.password'), true);
+                    
+                    //TODO 修改跳转
                     /* 2017110修改 */
-					if($gotopage)$this->success('注册成功', $gotopage);
+					$this->success('注册成功', Cookie('__forward__') ? : C('HOME_PAGE'), array('data' => D('User/User')->detail($uid)));
 					
                     // 构造消息数据
                     $msg_data['to_uid'] = $user_info['id'];

@@ -70,12 +70,17 @@ class IndexController extends BaseController {
 	        	$meta_title	=	'自营店';
 	        	break;
 		}
-        $list = D('product')->where($map)->order($order)->select();
+		$order	=	'price Asc';
+        $list_dom = D('product')->where($map)->order($order)->find(); //最低
+        $order	=	'price desc';
+        $list_top = D('product')->where($map)->order($order)->find(); //最高
 //         D('product')->get_list_order($list);
 
-//         P($order);exit;
+//         P($list_dom);exit;
+        $this->assign('list_dom', $list_dom );
+        $this->assign('list_top', $list_top );
         $this->assign('keyword', $keyword );
-        $this->assign('list', $list );
+//         $this->assign('list', $list );
         $this->assign('meta_title', $meta_title);
         $this->display();
     }

@@ -128,7 +128,7 @@ $(function(){
 		});
 		$('#a_type').change(function(){
 			aid = $(this).val();
-			if(pid == ''){
+			if(aid == ''){
 				result = '<option value=""> 选择分类</option>';
 				$('#s_type').show().hide().html('');
 			}else{
@@ -205,13 +205,13 @@ $(function(){
 </div>
 
 <div style=" clear: both;"></div>
-				<div class="top clearfloat">
+				<!--<div class="top clearfloat">
 					<ul>
 						<li class="iconfontyy" <empty name="Think.get.order">style="color: #ff0000"</empty> >价格最高</li>
 						<li class="order" <notempty name="Think.get.order">style="color: #ff0000"</notempty>>价格最低<i class="iconfont"></i></li>
 						<li>人气销量<i class="iconfontt"></i></li>
 					</ul>
-				</div>
+				</div> -->
 
 
 
@@ -222,11 +222,14 @@ $(function(){
 	.poi li{ float: left; margin-right: 10px; font-size: 12px; background: #a73040; padding: 2px 10px; border-radius: 5px; margin-top: 5px;  }
 	.poi li:nth-child(even){ background: #f79b3a; }
 	.poi li a{ color: #fff; }
+	span.top {
+    color: crimson;
+}
 </style>
 
 				<div class="bottom clearfloat">
 				
-					<volist name="list" id="vo">
+<!--					<volist name="list" id="vo">
 					<div class="lie clearfloat">
 						<div class="right clearfloat fl">
 							<a href="{:U('shop/'.$vo[id])}">
@@ -249,7 +252,57 @@ $(function(){
 						</div>
 					</div>
 					
-					</volist>
+					</volist> -->
+					
+					<notempty name="list_top">
+						<div class="lie clearfloat">
+						<div class="right clearfloat fl">
+							<a href="{:U('shop/'.$list_top[id])}">
+								<p class="tit">{$list_top.title} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="top">最高:{$list_top.price}元</span></p>
+							</a>
+							<div class="xia clearfloat">
+								<a href="{:U('shop/'.$list_top[id])}">
+									<p class="jifen fl over">-18℃以下冷冻储存，不膻不腻，足不出户，享受纯正好羊肉，烧烤必备。</p>
+								</a>
+								<div style=" clear: both; " ></div>
+								<ul class="poi">
+									<li><a href="{:U('shop/product/index',array('id'=>$list_top[id]))}">立即购买</a></li>
+								</ul>
+								
+
+								<span class="fr db"><img src="__SHOP_IMG__/jia.png"/></span>
+
+								
+							</div>
+						</div>
+					</div>
+					
+					
+					<div class="lie clearfloat">
+						<div class="right clearfloat fl">
+							<a href="{:U('shop/'.$list_dom[id])}">
+								<p class="tit">{$list_top.title}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="top">最低:{$list_dom.price}元</span></p>
+							</a>
+							<div class="xia clearfloat">
+								<a href="{:U('shop/'.$list_dom[id])}">
+									<p class="jifen fl over">-18℃以下冷冻储存，不膻不腻，足不出户，享受纯正好羊肉，烧烤必备。</p>
+								</a>
+								<div style=" clear: both; " ></div>
+								<ul class="poi">
+									<li><a href="{:U('shop/product/index',array('id'=>$list_dom[id]))}">立即购买</a></li>
+								</ul>
+								
+
+								<span class="fr db"><img src="__SHOP_IMG__/jia.png"/></span>
+
+								
+							</div>
+						</div>
+					</div>
+					
+					</notempty>
+					
+					
 					
 					
 				</div>

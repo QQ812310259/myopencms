@@ -499,7 +499,7 @@ class ListBuilder extends CommonController {
         foreach ($this->_table_data_list as &$data) {
             // 编译表格右侧按钮
             if ($this->_right_button_list) {
-                foreach ($this->_right_button_list as $right_button) {
+                foreach ($this->_right_button_list as $right_key => $right_button) {
                     // 禁用按钮与隐藏比较特殊，它需要根据数据当前状态判断是显示禁用还是启用
                     if ($right_button['type'] === 'forbid'){
                         $right_button = $right_button[$data['status']];
@@ -514,7 +514,14 @@ class ListBuilder extends CommonController {
 
                     // 编译按钮属性
                     $right_button['attribute'] = $this->compileHtmlAttr($right_button);
-                    $data['right_button'][$right_button['name']] = $right_button;
+                    
+                    //TODO 2017-1-17 修改只能一个self
+                    if(!empty($data['right_button'][$right_button['name']])){
+                    	$data['right_button'][$right_button['name'].$right_key] = $right_button;
+                    }else {
+                    	$data['right_button'][$right_button['name']] = $right_button;
+                    }
+                    
                 }
             }
 
@@ -607,7 +614,7 @@ class ListBuilder extends CommonController {
                 $button['attribute'] = $this->compileHtmlAttr($button);
             }
         }
-//         P( $this->_alter_data_list);exit;
+//         P( $this->_extra_html);exit;
         $this->assign('meta_title',          $this->_meta_title);          // 页面标题
         $this->assign('top_button_list',     $this->_top_button_list);     // 顶部工具栏按钮
         $this->assign('search',              $this->_search);              // 搜索配置

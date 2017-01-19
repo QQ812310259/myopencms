@@ -60,3 +60,88 @@ function getCity($ip){
 	// 	}
 	return $city[2].'  '.$city[3];
 }
+
+
+// 获取当前用户的Token
+function get_token($token = NULL) {
+
+	if (MODULE_MARK === 'Admin') {
+		$mpid = session('mpid');
+		$mpid = intval($mpid);
+		return $mpid;
+	}
+
+	$stoken = session('token');
+	$domain = strip_tags($_SERVER ['HTTP_HOST']);
+
+	if ($token !== NULL && $token != '-1') {
+		session('token', $token);
+	} elseif (empty($stoken) && $domain != 'os.samcms.com' && $domain != 'localhost') {
+		
+		$token = M("mpdomain")->cache(true)->where(array("url" => $domain))->getField('mpid');
+		$token && session('token', $token);
+	} elseif (!empty($_REQUEST ['token']) && $_REQUEST ['token'] != '-1') {
+		session('token', $_REQUEST ['token']);
+	} 
+	$token = session('token');
+
+	if (empty($token)) {
+		$token = '-1';
+	}
+	return $token;
+}
+
+// 获取公众号的信息
+function get_token_appinfo($token = '') {
+	empty($token) && $token = get_token();
+	$map['id'] = $token;
+	$info = M("Mpbase")->where($map)->cache(true)->find();
+	return $info;
+}
+
+// 全局的安全过滤函数
+function safe($text, $type = 'html') {
+	// 无标签格式
+	$text_tags = '';
+	// 只保留链接
+	$link_tags = '<a>';
+	// 只保留图片
+	$image_tags = '<img>';
+	// 只存在字体样式
+	$font_tags = '<i><b><u><s><em><strong><font><big><small><sup><sub><bdo><h1><h2><h3><h4><h5><h6>';
+	// 标题摘要基本格式
+	$base_tags = $font_tags . '<p><br><hr><a><img><map><area><pre><code><q><blockquote><acronym><cite><ins><del><center><strike><section><header><footer><article><nav><audio><video>';
+	// 兼容Form格式
+	$form_tags = $base_tags . '<form><input><textarea><button><select><optgroup><option><label><fieldset><legend>';
+	// 内容等允许HTML的格式
+	$html_tags = $base_tags . '<meta><ul><ol><li><dl><dd><dt><table><caption><td><th><tr><thead><tbody><tfoot><col><colgroup><div><span><object><embed><param>';
+	// 全HTML格式
+	$all_tags = $form_tags . $html_tags . '<!DOCTYPE><html><head><title><body><base><basefont><script><noscript><applet><object><param><style><frame><frameset><noframes><iframe>';
+	// 过滤标签
+	$text = html_entity_decode($text, ENT_QUOTES, 'UTF-8');
+	$text = strip_tags($text, ${$type . '_tags'});
+
+	// 过滤攻击代码
+	if ($type != 'all') {
+		// 过滤危险的属性，如：过滤on事件lang js
+		while (preg_match('/(<[^><]+)(ondblclick|onclick|onload|onerror|unload|onmouseover|onmouseup|onmouseout|onmousedown|onkeydown|onkeypress|onkeyup|onblur|onchange|onfocus|codebase|dynsrc|lowsrc)([^><]*)/i', $text, $mat)) {
+			$text = str_ireplace($mat [0], $mat [1] . $mat [3], $text);
+		}
+		while (preg_match('/(<[^><]+)(window\.|javascript:|js:|about:|file:|document\.|vbs:|cookie)([^><]*)/i', $text, $mat)) {
+			$text = str_ireplace($mat [0], $mat [1] . $mat [3], $text);
+		}
+	}
+	return $text;
+}
+
+function geturl() {
+	return "http://" . strip_tags($_SERVER ['HTTP_HOST']) . __ROOT__;
+}
+
+function get_cover_url($cover_id) {
+	$url = get_cover($cover_id);
+	if (empty($url))
+		return '';
+
+	return geturl() . $url;
+}

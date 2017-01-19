@@ -37,7 +37,14 @@ class AdminController extends CommonController {
             }
             $this->assign('_admin_tabs', C('ADMIN_TABS'));
         }
-
+	
+	    $mpid = session('mpid');
+        $mpid = intval($mpid);
+        $weiurl = MODULE_NAME . '/' . CONTROLLER_NAME;
+        if ($mpid < 1 && $weiurl !== 'Weixin/Mpbase' && $weiurl !== 'Weixin/Mpdomain') {
+            redirect(U('weixin/mpbase/index'));
+        }
+	
         // 获取所有导航
         $module_object = D('Admin/Module');
         $menu_list = $module_object->getAllMenu();
@@ -228,4 +235,105 @@ class AdminController extends CommonController {
                     ->display();
         }
     }
+
+    /**
+     * 统一的新增数据
+     * @author wei51.com
+     */
+    public function add() {
+        if (IS_POST) {
+            if (method_exists($this, '_tigger_setdate')) {
+                $this->_tigger_setdate();
+            }
+
+            $model = $this->getmodel();
+            $data = $model->create();
+            if ($data) {
+                $id = $model->add();
+                if ($id) {
+                    // 回调接口
+                    if (method_exists($this, '_tigger_insert')) {
+                        $this->_tigger_insert($id);
+                    }
+                    $gotopage = I("gotopage");
+                    if (empty($gotopage)) {
+                        $gotopage = U('index');
+                    }
+                    $this->success('新增成功', $gotopage);
+                } else {
+                    $this->error('新增失败');
+                }
+            } else {
+                $this->error($model->getError());
+            }
+        } else {            
+            if (method_exists($this, 'setForm')) {
+                // 使用FormBuilder快速建立表单页面。
+                $this->setForm($id);
+            } else {
+                $v = $model->find($id);
+                if (method_exists($this, '_tigger_add')) {
+                    $tmpv = $this->_tigger_add($v);
+                    $tmpv && $v = $tmpv;
+                }
+                $this->assign('v', $v);
+                $this->display();
+            }
+            
+        }
+    }
+
+    /**
+     * 编辑素材
+     * @author jry <598821125@qq.com>
+     */
+    public function edit() {
+        $id = I("id",0,'intval');
+        $model = $this->getmodel();
+        if (IS_POST) {
+
+            if (method_exists($this, '_tigger_setdate')) {
+                $this->_tigger_setdate();
+            }
+
+            $data = $model->create();
+            if ($data) {
+                if ($model->save() !== false) {
+
+                    //回调接口
+                    if (method_exists($this, '_tigger_update')) {
+                        $this->_tigger_update($model);
+                    }
+
+                    //成功提示
+                    $gotopage = I("gotopage");
+
+                    if (empty($gotopage)) {
+                        $gotopage = U('index');
+                    }
+
+                    $this->success('更新成功', $gotopage);
+                } else {
+                    $this->error('更新失败');
+                }
+            } else {
+                $this->error($model->getError());
+            }
+        } else {
+
+            if (method_exists($this, 'setForm')) {
+                // 使用FormBuilder快速建立表单页面。
+                $this->setForm($id);
+            } else {
+                $v = $model->find($id);
+                if (method_exists($this, '_tigger_edit')) {
+                    $tmpv = $this->_tigger_edit($v);
+                    $tmpv && $v = $tmpv;
+                }
+                $this->assign('v', $v);
+                $this->display();
+            }
+        }
+    }
+
 }
