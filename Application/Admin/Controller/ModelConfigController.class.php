@@ -70,21 +70,20 @@ class ModelConfigController extends AdminController
             // 使用Builder快速建立列表页面。
             $builder = new \Common\Builder\ListBuilder();
             $builder->setMetaTitle('添加菜单') // 设置页面标题
-                ->addTopButton('addnew', ['href' => U('Admin/ModelConfig/add', ['module_id' => $module_id]),
-                ]) // 添加新增按钮
+                ->addTopButton('addnew',array('href'=>U('Admin/ModelConfig/add',array('module_id' => $module_id)))) // 添加新增按钮
                 ->addTopButton('delete') // 添加删除按钮
                 ->addTableColumn('id', 'ID')
                 ->addTableColumn('icon', '图标', 'icon')
                 ->addTableColumn('title_show', '标题')
                 ->addTableColumn('right_button', '操作', 'btn')
                 ->setTableDataList($data_list) // 数据列表
-                ->addRightButton('edit', [
-                    'href' => U('Admin/ModelConfig/edit', ['id' => '__data_id__', 'module_id' => $module_id]),
-                ]
+                ->addRightButton('edit', array(
+                    'href' => U('Admin/ModelConfig/edit', array('id' => '__data_id__', 'module_id' => $module_id)),
+                )
                 ) // 添加编辑按钮
-                ->addRightButton('delete', [
-                    'href' => U('Admin/ModelConfig/delete', ['id' => '__data_id__', 'module_id' => $module_id]),
-                ]
+                ->addRightButton('delete', array(
+                    'href' => U('Admin/ModelConfig/delete', array('id' => '__data_id__', 'module_id' => $module_id)),
+                )
                 ) // 添加删除按钮
                 ->display();
         }
@@ -96,7 +95,8 @@ class ModelConfigController extends AdminController
         $data      = I('post.');
         $menus     = $this->getMenus($module_id);
         if (IS_POST) {
-            $next_id         = end($menus)['id'] + 1;
+        	$next_info		=	end($menus);
+            $next_id        = $next_info['id'] + 1;
             $menus[$next_id] = $data;
             if (1 == $data['pid']) {
                 $data['icon'] = 'fa fa-folder-open-o';
@@ -106,7 +106,7 @@ class ModelConfigController extends AdminController
             // 使用FormBuilder快速建立表单页面。
             $builder = new \Common\Builder\FormBuilder();
             $builder->setMetaTitle('新增菜单') // 设置页面标题
-                ->setPostUrl(U('Admin/ModelConfig/add', ['module_id' => $module_id])) // 设置表单提交地址
+                ->setPostUrl(U('Admin/ModelConfig/add', array('module_id' => $module_id))) // 设置表单提交地址
                 ->addFormItem('pid', 'select', '上级菜单', '上级菜单', list_as_tree($menus, '顶级菜单'))
                 ->addFormItem('title', 'text', '菜单标题', '菜单前台显示标题')
                 ->addFormItem('url', 'text', '请填写外链URL地址', '支持http://格式或者TP的U函数解析格式')
@@ -149,7 +149,7 @@ class ModelConfigController extends AdminController
             }
             $builder->setMetaTitle('编辑菜单') // 设置页面标题
 //                 ->setAjaxSubmit(false)
-                ->setPostUrl(U('Admin/ModelConfig/edit', ['id' => $id, 'module_id' => $module_id])) // 设置表单提交地址
+                ->setPostUrl(U('Admin/ModelConfig/edit', array('id' => $id, 'module_id' => $module_id))) // 设置表单提交地址
                 ->addFormItem('id', 'hidden', 'ID', 'ID')
                 ->addFormItem('pid', 'select', '上级菜单', '上级菜单', list_as_tree($menus, '顶级菜单'))
                 ->addFormItem('title', 'text', '菜单标题', '菜单前台显示标题')
@@ -182,7 +182,7 @@ class ModelConfigController extends AdminController
             $config_file = APP_PATH . $module['name'] . '/opencmf.php';
             if (is_writeable($config_file)) {
                 $old_config = include $config_file;
-                $new_config = array_merge($old_config, ['admin_menu' => $data]);
+                $new_config = array_merge($old_config, array('admin_menu' => $data));
                 if (!$new_config) {
                     $this->error('合并配置失败');
                 } else {
@@ -200,7 +200,7 @@ class ModelConfigController extends AdminController
 return {$config_source}
 ;
 PHP;
-                    $addon_index = U('Admin/ModelConfig/menus', ['id' => $id, 'module_id' => $module['id']]);
+                    $addon_index = U('Admin/ModelConfig/menus', array('id' => $id, 'module_id' => $module['id']));
                     if (file_put_contents($config_file, $config_file_str)) {
                         $ret = $this->updateinfo($id);
                         if (true === $ret) {

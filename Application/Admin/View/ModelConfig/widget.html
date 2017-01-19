@@ -49,7 +49,7 @@
 										<i class="fa <eq name="vo.status" value="1">fa-check text-success<else />fa-ban text-danger</eq>"></i>
 									</td>
 									<td>
-										<a class="label label-info" href="{:U('Admin/ModelConfig/menus', ['id'=>$addon_id, 'module_id'=>$vo['id']])}">编辑菜单</a>
+										<a class="label label-info" href="{:U('Admin/ModelConfig/menus', array('id'=>$addon_id, 'module_id'=>$vo['id']))}">编辑菜单</a>
 									</td>
 								</tr>
 								</volist>
