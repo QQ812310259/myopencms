@@ -90,6 +90,26 @@ function get_token($token = NULL) {
 	}
 	return $token;
 }
+/**
+ * 获取当前公众号实例化的 wechat 
+ */
+function get_wecha_model(){
+	$token = get_token();	//获取token
+	if($token	==	'-1'){
+		return false;
+	}
+	$mpinfo = get_token_appinfo($token);
+	//加载微信SDK
+	$options = array(
+			'token' => "wei51", //填写你设定的key
+			'encodingaeskey' => $mpinfo["encodingaeskey"], //填写加密用的EncodingAESKey
+			'appid' => $mpinfo["appid"], //填写高级调用功能的app id, 请在微信开发模式后台查询
+			'appsecret' => $mpinfo["secret"]        //填写高级调用功能的密钥
+	);
+	 
+	$weObj = new \Wechat($options);
+	return $weObj;
+}
 
 // 获取公众号的信息
 function get_token_appinfo($token = '') {

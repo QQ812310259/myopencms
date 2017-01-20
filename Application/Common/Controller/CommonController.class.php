@@ -13,6 +13,7 @@ use Think\Controller;
  * @author jry <598821125@qq.com>
  */
 class CommonController extends Controller {
+	protected $thismodel;  //设定模型
     /**
      * 模板显示 调用内置的模板引擎显示方法，
      * @access protected

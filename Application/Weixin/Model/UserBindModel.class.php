@@ -26,7 +26,7 @@ class UserBindModel extends Model {
      * @author jry <598821125@qq.com>
      */
     protected $_validate = array(
-        array('uid', 'require', 'uid不能为空', self::MUST_VALIDATE, 'regex', self::MODEL_BOTH),
+//         array('uid', 'require', 'uid不能为空', self::MUST_VALIDATE, 'regex', self::MODEL_BOTH),
         array('openid', 'require', 'openid不能为空', self::VALUE_VALIDATE, 'regex', self::MODEL_BOTH),
     );
 
